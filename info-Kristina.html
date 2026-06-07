@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Собутыльники🍾</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: rgb(34, 39, 69);
+            background: linear-gradient(to bottom right, black, rgb(255, 0, 157));
+        }
+        .conteiner{
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px){
+            .conteiner{
+                width: 95%;
+            }
+        }
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+        .buttons{
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .cup{
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            transition: all 0.6s;
+        }
+        .cup:hover{
+            transform: scale(1.1);
+            background: rgb(255, 0, 157);
+            color: #ffffff;
+        }
+        .buttons_ul{
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .photo{
+            flex: 0 0 550px; 
+            max-width: 550px;
+        }
+        .photo img{
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            background-color: #ccc;
+        }
+        .content{
+            display: flex;
+            gap: 40px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.2rem;
+            color: white;
+            margin-right: 540px;
+            margin-top: 40px;
+            margin-left: 40px;
+            padding-bottom: 50px;
+        }
+        .info{
+            margin-left: 60px;
+        }
+        .info h3{
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .info p{
+            width: auto;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 1.8;
+            width: 700px;
+        }
+        .back{
+            display: inline-block;
+            color: black;
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            margin-left: 40px;
+            cursor: pointer;
+            transition: all 0.4s;
+        }
+        .back:hover{
+            transform: translateX(20px);
+            background: red;
+            color: white;
+        }
+        .photo-content{
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 20px;
+            margin-left: -50px;
+            margin-top: 20px;
+            background: rgba(162, 140, 140, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(2px);            
+        }
+        .gallery{
+            flex: 0 0 250px;
+            max-width: 230px;
+        }
+        .gallery img{
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            background-color: #ccc;            
+        }
+
+        /* ========== АНИМАЦИЯ fade-up (как у Максима) ========== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUP 0.6s ease forwards;
+        }
+
+        @keyframes slideUP {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Задержки для элементов */
+        .back.fade-up {
+            animation-delay: 0.1s;
+        }
+        .photo.fade-up {
+            animation-delay: 0.15s;
+        }
+        .info h3.fade-up {
+            animation-delay: 0.2s;
+        }
+        .info p.fade-up {
+            animation-delay: 0.3s;
+        }
+        .photo-content.fade-up {
+            animation-delay: 0.4s;
+        }
+
+        /* Анимация для миниатюр в галерее */
+        .gallery {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUP 0.5s ease forwards;
+        }
+        .gallery:nth-child(1) { animation-delay: 0.45s; }
+        .gallery:nth-child(2) { animation-delay: 0.55s; }
+        .gallery:nth-child(3) { animation-delay: 0.65s; }
+
+        /* ========== НИЖЕ ТОЛЬКО АДАПТИВ (КОД НЕ ТРОГАЛ) ========== */
+
+        /* Планшеты (до 1100px) */
+        @media (max-width: 1100px) {
+            .content {
+                margin-right: 20px;
+                margin-left: 20px;
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+            .info {
+                margin-left: 0;
+                flex: 1;
+            }
+            .info p {
+                width: auto;
+                max-width: 100%;
+            }
+            .photo {
+                flex: 0 0 350px;
+                max-width: 350px;
+            }
+            .photo-content {
+                margin-left: 0;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            .gallery {
+                flex: 1;
+                min-width: 120px;
+                max-width: 160px;
+            }
+            .back {
+                margin-left: 20px;
+            }
+        }
+
+        /* Телефоны (до 768px) — кнопки вертикально, контент колонкой */
+        @media (max-width: 768px) {
+            /* Шапка — кнопки вертикально */
+            .head_ {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 16px 20px;
+            }
+            .buttons_ul {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            .cup {
+                margin: 5px;
+            }
+            
+            /* Контент — колонкой (фото сверху, текст снизу) */
+            .content {
+                flex-direction: column;
+                margin: 20px 15px;
+                padding-bottom: 30px;
+                gap: 25px;
+            }
+            .info {
+                order: 2;
+                margin-left: 0;
+                width: 100%;
+            }
+            .info h3 {
+                text-align: center;
+                font-size: 1.8rem;
+            }
+            .info p {
+                width: 100%;
+                font-size: 1rem;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+            }
+            .photo {
+                order: 1;
+                flex: auto;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            .photo-content {
+                flex-direction: row;
+                justify-content: center;
+                margin-left: 0;
+                gap: 15px;
+            }
+            .gallery {
+                flex: 0 0 calc(33% - 15px);
+                max-width: 110px;
+                min-width: 80px;
+            }
+            .back {
+                margin-left: 15px;
+                margin-top: 15px;
+            }
+        }
+
+        /* Маленькие телефоны (до 480px) */
+        @media (max-width: 480px) {
+            .conteiner, .container {
+                width: 95%;
+            }
+            .content {
+                margin: 15px 12px;
+            }
+            .info h3 {
+                font-size: 1.5rem;
+            }
+            .info p {
+                font-size: 0.95rem;
+            }
+            .photo {
+                max-width: 240px;
+            }
+            .gallery {
+                max-width: 90px;
+            }
+            .back {
+                margin-left: 12px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники🍾</p>
+        </div>
+        <div class = "buttons">
+            <ul class = "buttons_ul">
+                <a href = "sale.html" class = "cup">Товары</a>
+                <a href = "titel.html" class = "cup">Главная</a>
+                <a href = "alco.html" class = "cup">Побухать</a>
+                <a href = "usl.html" class = "cup">Услуги</a>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <a href="index.html" class="back fade-up">Назад</a>
+        <main class="content">
+            <div class="photo fade-up">
+                <img src="https://sun9-66.userapi.com/s/v1/ig2/FuN0bdQav_Yy1HVOWMbiC81aJz3fH9B2qm2M2qhsy18D37Pf47DXVLXjovL-EChKevYuxspQno3wSvOUlm5u-pDG.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&from=bu&cs=640x0" alt="Кристина Андреева">
+            </div>
+            <div class="info">
+                <h3 class="fade-up">Андреева Кристина</h3>
+                <p class="fade-up">
+                    Это Кристина младшая сестра Максима. Учится в 8 классе, играет на гитаре.<br>
+                    "Привет я Кристина! Обожаю музыку, творчество и веселые компании. 
+                    Учусь в музыкальной школе по классу гитары, пишу свои песни и мечтаю выступать на большой сцене. 
+                    В свободное время гуляю с друзьями, смотрю кино и, конечно, люблю петь под гитару у костра. 
+                    Со мной всегда интересно и душевно!"
+                    <div class="photo-content fade-up">
+                        <div class="gallery">
+                            <img src="https://sun9-71.userapi.com/s/v1/ig2/omYsoCqrdfafW-n-Fs0qniMufomLKy_nif0PwiizQsjD32RmLNZavqiAPAVvL7KVWYRBuDrM0-nMp0W-eAOJDEK9.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&from=bu&u=enHNLxr8c40NLGvgN7j8v_HG8hwjsGTLSbpxjj4NLEo&cs=640x0" alt="">
+                        </div>
+                        <div class="gallery">
+                            <img src="https://sun9-38.userapi.com/s/v1/ig2/j0D9ZPuMx53T6vqsbmnIzmzvKt1Zyc_Lz93eZUJeK_tPq-VWutCY0fLX8jjDETLXFI6I2djOO2vjXvcWCYegxFLh.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&from=bu&cs=640x0" alt="">
+                        </div>
+                        <div class="gallery">
+                            <img src="https://sun9-62.userapi.com/s/v1/ig2/imqvoGZNXDep2uNuMrcAKQBBBjhJUm56-IvJAHj47AG0YBi2pzk3aXC0A349xga6GnYgYtsniwFFCLFR0qhX2-n3.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&from=bu&u=CFh5p7Qwpgs0OAVnwBNbLGqX0k-SrMKQWKQ3iUqWaJ8&cs=640x0" alt="">
+                        </div>
+                    </div>
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

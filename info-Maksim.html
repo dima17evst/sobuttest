@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Собутыльники</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: rgb(34, 39, 69);
+            background: linear-gradient(to bottom right, black, rgb(55, 255, 33));
+        }
+        .conteiner{
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px){
+            .conteiner{
+                width: 95%;
+            }
+        }
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+        .buttons{
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .cup{
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            transition: all 0.6s;
+        }
+        .cup:hover{
+            transform: scale(1.1);
+            background: rgb(55, 255, 33);
+            color: #ffffff;
+        }
+        .buttons_ul{
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .content{
+            display: flex;
+            gap: 40px;
+            justify-content: space-between;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: white;
+            font-size: 1.2rem;
+            margin-right: 540px;
+            margin-top: 40px;
+            margin-left: 40px;
+            padding-bottom: 50px;
+        }
+        .info {
+            margin-left: 40px;
+        }
+        .info h3{
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 20px; 
+            animation-delay: 0.2s;           
+        }
+        .info p{
+            /* width: auto; */
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            line-height: 1.8;
+            width: 700px;
+            animation-delay: 0.3s;
+        }
+        .back{
+            display: inline-block;
+            color: black;
+            background-color: #ffffff;
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin-top: 20px;
+            margin-left: 40px;
+            cursor: pointer;
+            transition: all 0.4s;
+            animation-delay: 0.1s;
+        }
+       .back:hover{
+            transform: translateX(20px);
+            background: red;
+            color: white;
+        }
+        .photo{
+            flex: 0 0 500px;
+            max-width: 500px;
+            margin-left: 50px;
+        }
+        .photo img{
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            background-color: #ccc;      
+            animation-delay: 0.5s;      
+        }
+        .gallery{
+            flex: 0 0 250px;
+            max-width: 230px;
+        }
+        .gallery img{
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+            aspect-ratio: 1/1;
+            background-color: #ccc;
+        }
+        .photo-content{
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            margin-bottom: 20px;
+            margin-left: -50px;
+            margin-top: 20px;
+            background: rgba(162, 140, 140, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(2px);  
+            animation-delay: 0.4s;          
+        }
+        .fade-up{
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUP 0.6s ease forwards;
+        }
+        @keyframes slideUP{
+            to{
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ========= НИЖЕ ТОЛЬКО АДАПТИВ — ВСЁ ОСТАЛЬНОЕ НЕ ТРОГАЛ ========= */
+
+        /* Планшеты (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .content {
+                margin-right: 20px;
+                margin-left: 20px;
+                gap: 30px;
+                flex-wrap: wrap;
+            }
+            .info {
+                margin-left: 20px;
+                flex: 1;
+            }
+            .info p {
+                width: auto;
+                max-width: 100%;
+            }
+            .photo {
+                flex: 0 0 350px;
+                max-width: 350px;
+                margin-left: 0;
+            }
+            .photo-content {
+                margin-left: 0;
+                gap: 20px;
+                flex-wrap: wrap;
+            }
+            .gallery {
+                flex: 1;
+                min-width: 120px;
+                max-width: 160px;
+            }
+            .back {
+                margin-left: 20px;
+            }
+        }
+
+        /* Телефоны (до 768px) — кнопки вертикально, контент колонкой */
+        @media (max-width: 768px) {
+            /* Шапка — кнопки вертикально */
+            .head_ {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 16px 20px;
+            }
+            .buttons_ul {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            .cup {
+                margin: 5px;
+            }
+            
+            /* Контент — колонкой */
+            .content {
+                flex-direction: column;
+                margin: 20px 15px;
+                padding-bottom: 30px;
+                gap: 25px;
+            }
+            .info {
+                order: 2;
+                margin-left: 0;
+                width: 100%;
+            }
+            .info h3 {
+                text-align: center;
+                font-size: 1.8rem;
+            }
+            .info p {
+                width: 100%;
+                font-size: 1rem;
+            }
+            .photo {
+                order: 1;
+                flex: auto;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+            .photo-content {
+                flex-direction: row;
+                justify-content: center;
+                margin-left: 0;
+                gap: 15px;
+            }
+            .gallery {
+                flex: 0 0 calc(33% - 15px);
+                max-width: 110px;
+                min-width: 80px;
+            }
+            .back {
+                margin-left: 15px;
+                margin-top: 15px;
+            }
+        }
+
+        /* Маленькие телефоны (до 480px) */
+        @media (max-width: 480px) {
+            .conteiner, .container {
+                width: 95%;
+            }
+            .content {
+                margin: 15px 12px;
+            }
+            .info h3 {
+                font-size: 1.5rem;
+            }
+            .info p {
+                font-size: 0.95rem;
+            }
+            .photo {
+                max-width: 240px;
+            }
+            .gallery {
+                max-width: 90px;
+            }
+            .back {
+                margin-left: 12px;
+                padding: 8px 16px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники🍾</p>
+        </div>
+        <div class = "buttons">
+            <ul class = "buttons_ul">
+                <a href = "sale.html" class = "cup">Товары</a>
+                <a href = "titel.html" class = "cup">Главная</a>
+                <a href = "alco.html" class = "cup">Побухать</a>
+                <a href = "usl.html" class = "cup">Услуги</a>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <a href="index.html" class="back">Назад</a>
+        <main class="content">
+            <div class="info">
+                <h3 class="fade-up">Максим Андреев</h3>
+                <p class="fade-up">"Привет, я Максим! Люблю активный отдых, хорошую компанию и, конечно, наш проект "Собутыльники". 
+                    Всегда рад новым знакомствам и идеям. Моя задача — делать атмосферу веселее, а общение — проще. 
+                    Если вы ищете человека, который поддержит любую авантюру — вы его нашли. 
+                    В свободное время занимаюсь машиной, слушаю музыку и отдыхаю с друзьями. 
+                    Добро пожаловать в нашу команду!"
+                    <div class="photo-content fade-up">
+                        <div class="gallery">
+                            <img src="макс и я на род.jpg" alt="">
+                        </div>
+                        <div class="gallery">
+                            <img src="макс с цветами.jpg" alt="">
+                        </div>
+                        <div class="gallery">
+                            <img src="макс отдамся.jpg" alt="">
+                        </div>
+                    </div>
+                </p>
+            </div>
+            <div class="photo fade-up">
+                <img src="https://sun9-15.userapi.com/s/v1/ig2/N8aqxc0O8yhYoBbmWILgZKU_h-2qLpvKCD6Uywz6VVwd5Dg-AGwV069WiKoJtxDjqf0xajCysqsEakguDGEdcs7N.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=qPGimqRUU0FSZ4O4kgpKBy4qNdr9xqrVx8K9Xfh1xr4&cs=960x0" alt="">
+            </div>
+        </main>
+    </div>
+</body>
+</html>

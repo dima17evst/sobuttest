@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+    <title>Собутыльники — Товары</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to bottom right, black, blue);
+            min-height: 100vh;
+        }
+        /* контейнер-обёртка для центрирования */
+        .container {
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px) {
+            .container {
+                width: 95%;
+            }
+        }
+
+        /* ========= ШАПКА ========= */
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+            margin: 0;
+        }
+        /* Блок кнопок — горизонтальный по умолчанию */
+        .buttons {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .buttons_ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+        .cup {
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 18px;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,0,0.2);
+            white-space: nowrap;
+        }
+        .cup:hover {
+            transform: scale(1.05);
+            background: rgb(34, 39, 69);
+            color: white;
+            border-color: #ffcc00;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        /* ========= ОСНОВНОЙ КОНТЕНТ ========= */
+        .content {
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        /* карточка товара */
+        .member_sal {
+            width: calc(50% - 15px);
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            background: rgba(103, 103, 103, 0.6);
+            border-radius: 28px;
+            padding: 24px;
+            backdrop-filter: blur(2px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .member_sal:hover {
+            transform: scale(1.02);
+            background: rgba(130, 130, 130, 0.8);
+        }
+        .name_card {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.2rem;
+            color: white;
+            line-height: 1.5;
+            flex: 1;
+        }
+        .name_card p {
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        .inf_sal {
+            flex: 0 0 220px;
+            max-width: 220px;
+        }
+        .inf_sal img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            transition: 0.2s;
+        }
+        .price {
+            display: inline-block;
+            background: white;
+            color: black;
+            padding: 12px 24px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .price:hover {
+            background: #ffcc00;
+            color: black;
+            transform: scale(1.03);
+        }
+
+        /* ========= МОДАЛЬНОЕ ОКНО — НОВАЯ, ИДЕАЛЬНАЯ ВЕРСИЯ ========= */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.94);
+            z-index: 1000;
+            overflow-y: auto;
+            overflow-x: hidden;
+            backdrop-filter: blur(6px);
+            /* включаем flex для центрирования */
+            align-items: center;
+            justify-content: center;
+        }
+        /* главный контейнер модалки — больше не position absolute, только относительное позиционирование */
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, #040030, #1a1a1a);
+            border-radius: 32px;
+            width: 90%;
+            max-width: 1100px;
+            margin: 30px auto;
+            color: white;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 40px 35px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,215,0,0.3);
+            /* убираем абсолютную привязку */
+        }
+        .modal-photo {
+            flex: 0 0 280px;
+            max-width: 280px;
+        }
+        .modal-photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .modal-text {
+            flex: 2;
+            min-width: 220px;
+        }
+        .modal-text h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ffd966;
+        }
+        .modal-text p {
+            line-height: 1.6;
+            font-size: 1.1rem;
+            white-space: pre-wrap;
+            color: #f0f0f0;
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 28px;
+            font-size: 44px;
+            cursor: pointer;
+            color: white;
+            transition: 0.2s;
+            line-height: 1;
+            z-index: 10;
+            font-weight: bold;
+            background: transparent;
+            width: 44px;
+            text-align: center;
+        }
+        .close:hover {
+            color: #ff5555;
+            transform: scale(1.1);
+        }
+        .footer {
+            margin-top: 25px;
+            text-align: left;
+        }
+
+        /* ========= АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ ========= */
+        @media (max-width: 768px) {
+            /* шапка — колонка, кнопки вертикально */
+            .head_ {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+                padding: 18px 20px;
+            }
+            .namesite {
+                font-size: 1.8rem;
+            }
+            .buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            .buttons_ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+                align-items: stretch;
+            }
+            .cup {
+                display: block;
+                text-align: center;
+                width: 100%;
+                white-space: normal;
+                padding: 12px 12px;
+                font-size: 1.1rem;
+            }
+
+            /* карточки товаров: вертикально */
+            .member_sal {
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+            .inf_sal {
+                max-width: 80%;
+                margin-top: 10px;
+            }
+            .name_card {
+                order: 2;
+            }
+
+            /* МОДАЛЬНОЕ ОКНО — ИСПРАВЛЕНО: не съезжает, центрируется, скроллится */
+            .modal {
+                align-items: flex-start;   /* чтобы при длинном контенте был скролл от верха */
+                justify-content: center;
+                padding: 16px;
+            }
+            .modal-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 35px 22px 30px;
+                margin: 20px auto;
+                width: 100%;
+                gap: 20px;
+            }
+            .modal-photo {
+                max-width: 220px;
+                margin-top: 10px;
+            }
+            .modal-text h2 {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+            .modal-text p {
+                font-size: 1rem;
+                text-align: left;
+            }
+            .close {
+                top: 12px;
+                right: 18px;
+                font-size: 38px;
+            }
+            .footer {
+                text-align: center;
+            }
+        }
+
+        /* дополнительная подстройка для совсем узких экранов (до 480px) */
+        @media (max-width: 480px) {
+            .content {
+                padding: 20px 12px;
+            }
+            .member_sal {
+                padding: 16px;
+            }
+            .inf_sal {
+                max-width: 95%;
+            }
+            .modal-content {
+                padding: 28px 16px 25px;
+            }
+            .modal-text p {
+                font-size: 0.95rem;
+            }
+            .close {
+                top: 8px;
+                right: 12px;
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники🍾</p>
+        </div>
+        <div class="buttons">
+            <ul class="buttons_ul">
+                <li><a href="titel.html" class="cup">Главная</a></li>
+                <li><a href="index.html" class="cup">О нас</a></li>
+                <li><a href="alco.html" class="cup">Побухать</a></li>
+                <li><a href="usl.html" class="cup">Услуги</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="container">
+        <main class="content">
+            <div class="cards">
+                <!-- Товар 1 -->
+                <div class="member_sal" data-sale="salefirst">
+                    <div class="name_card">
+                        Плюшевая игрушка бутылка Ягермейстера
+                        <p>- Цена: 1 бутылка охоты крепкой<br>
+                        - Подходит для веселого времени с друзьями<br>
+                        - Материал: мягкий мохер, не кусается, но пьянит взглядом 🦌<br>
+                        - Особенность: можно обнимать, когда охота уже началась<br>
+                        - Комплект: идёт без пробки — открывать настроение легко</p>
+                    </div>
+                    <div class="inf_sal">
+                        <img src="https://i.pinimg.com/736x/51/15/07/51150756971525a8277952443ab95fa4.jpg" alt="Плюшевая бутылка Ягермейстера">
+                    </div>
+                </div>
+
+                <!-- Товар 2 -->
+                <div class="member_sal" data-sale="salesecond">
+                    <div class="name_card">
+                        Брелок бутылка Ягермейстера
+                        <p>- Цена: 1 бутылка охоты крепкой<br>
+                        - Мягкий плюш, безопасный для обниманий<br>
+                        - Не бьётся и не проливается<br>
+                        - Создаёт уют и повод для тоста<br>
+                        - Миниатюрный друг для ключей</p>
+                    </div>
+                    <div class="inf_sal">
+                        <img src="https://i.ebayimg.com/images/g/91YAAOSwTsNc~Rdj/s-l640.jpg" alt="Брелок Ягермейстер">
+                    </div>
+                </div>
+
+                <!-- Товар 3 -->
+                <div class="member_sal" data-sale="salethird">
+                    <div class="name_card">
+                        Открывашка Ягермейстер
+                        <p>- Цена: 1 бутылка охоты крепкой<br>
+                        - Прочный металл, не ржавеет<br>
+                        - Культовая эмблема оленя<br>
+                        - Помещается в карман и на ключи<br>
+                        - Открывает любые бутылки с первой попытки</p>
+                    </div>
+                    <div class="inf_sal">
+                        <img src="https://avatars.mds.yandex.net/i?id=849faabb92649864348fc22821e1e721_l-3923574-images-thumbs&n=13" alt="Открывашка Ягермейстер">
+                    </div>
+                </div>
+
+                <!-- Товар 4 -->
+                <div class="member_sal" data-sale="salefourth">
+                    <div class="name_card">
+                        Набор "Собутыльники"
+                        <p>- Цена: 1 бутылка охоты крепкой<br>
+                        - Комплект: Две бутылки Ягера и 6 рюмок<br>
+                        - Спасает в самый ответственный момент<br>
+                        - Создаёт уют даже на выезде<br>
+                        - Бонус: всегда с тобой</p>
+                    </div>
+                    <div class="inf_sal">
+                        <img src="https://i.ebayimg.com/images/g/LmUAAOSw559nQEI5/s-l400.jpg" alt="Набор Собутыльники">
+                    </div>
+                </div>
+
+                <!-- Товар 5 -->
+                <div class="member_sal" data-sale="salefifth">
+                    <div class="name_card">
+                        Наклейка Ягермейстер
+                        <p>- Цена: 1 бутылка охоты крепкой<br>
+                        - Размер: 10х5 см, яркая<br>
+                        - Прочный винил, не боится влаги<br>
+                        - Клеится на ноутбук, холодильник, кружку<br>
+                        - Не выцветает, не отклеивается</p>
+                    </div>
+                    <div class="inf_sal">
+                        <img src="https://avatars.mds.yandex.net/i?id=24af9c38671990da31333f45c1298231021fecf9-9067511-images-thumbs&n=13" alt="Наклейка Ягермейстер">
+                    </div>
+                </div>
+
+                <!-- Товар 6 (наклейка Паук) -->
+                <div class="member_sal" data-sale="saleseventh">
+                    <div class="name_card">
+                        Наклейка на автомобиль "Паук"
+                        <p>- Цена: 1 бутылка охоты крепкой<br>
+                        - Размер: 20х15 см, на бензобак<br>
+                        - Качественный винил, не выгорает<br>
+                        - Дань уважения классике<br>
+                        - Добавляет +30 лошадиных сил визуально</p>
+                    </div>
+                    <div class="inf_sal">
+                        <img src="https://avatars.mds.yandex.net/i?id=f5e8a17f10e53dbff657d1659cc9909aefad4969-8266553-images-thumbs&n=13" alt="Наклейка Паук">
+                    </div>
+                </div>
+
+                <!-- Товар 7 (уточка) -->
+                <div class="member_sal" data-sale="saleeight">
+                    <div class="name_card">
+                        Уточка на панель в машину
+                        <p>- Цена: 1 бутылка охоты крепкой<br>
+                        - Мягкий плюш, безопасный для стекла<br>
+                        - Прочная присоска, держит на кочках<br>
+                        - Качает головой при движении<br>
+                        - Поднимает улыбку даже в пробке</p>
+                    </div>
+                    <div class="inf_sal">
+                        <img src="https://avatars.mds.yandex.net/i?id=42459a9acb8dc6daa34d243af1dd85cf21bb4e3c-4612626-images-thumbs&n=13" alt="Уточка на панель">
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО — исправлено, не съезжает на телефонах -->
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-photo">
+                <img id="modal-photo" src="" alt="Фото товара">
+            </div>
+            <div class="modal-text">
+                <h2 id="name-sale"></h2>
+                <p id="modal-info"></p>
+                <div class="footer">
+                    <a href="price.html" id="modal-price" class="price">💰 Купить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Полная база товаров для модального окна
+            const sale = {
+                salefirst: {
+                    name: "Плюшевая игрушка бутылка Ягермейстера",
+                    photo: "https://i.pinimg.com/736x/51/15/07/51150756971525a8277952443ab95fa4.jpg",
+                    info: "⭐ Цена: 1 бутылка охоты крепкой\n\n🧸 Описание: Мягкая плюшевая бутылка Ягермейстера — идеальный компаньон для вечеринок, посиделок с друзьями и уютных вечеров.\nОна не бьётся, не проливается и не заканчивается в самый интересный момент.\n\n🧵 Материал: Высококачественный мохер, приятный на ощупь. Игрушка безопасна, не вызывает аллергии, не кусается (даже после третьей бутылки).\n\n✨ Особенности: \n• Можно обнимать, когда охота уже началась, а компания ещё не пришла\n• Не требует открывашки и повода\n• Поднимает настроение одним своим видом\n• Отличный антистресс для фанатов Ягера\n\n📦 Комплектация: Игрушка идёт без пробки — всегда открыта к общению и готова к веселью.\n\n🚚 Доставка: Отправляем в любую компанию. Можно забрать самовывозом с собой на вечеринку."
+                },
+                salesecond: {
+                    name: "Брелок бутылка Ягермейстера",
+                    photo: "https://i.ebayimg.com/images/g/91YAAOSwTsNc~Rdj/s-l640.jpg",
+                    info: "⭐ Цена: 1 бутылка охоты крепкой\n\n🔑 Описание: Миниатюрная плюшевая бутылка Ягермейстера — идеальный компаньон для ключей, рюкзака и весёлых приключений.\n\n🧵 Материал: Высококачественный плюш, крепление из прочного металлического карабина.\n\n✨ Особенности: \n• Можно повесить куда угодно: ключи, рюкзак, сумку, зеркало заднего вида\n• Всегда с тобой, даже когда настоящая бутылка осталась дома\n• Поднимает настроение одним своим видом\n\n🚚 Доставка: Отправляем в любую компанию."
+                },
+                salethird: {
+                    name: "Открывашка Ягермейстер",
+                    photo: "https://avatars.mds.yandex.net/i?id=849faabb92649864348fc22821e1e721_l-3923574-images-thumbs&n=13",
+                    info: "⭐ Цена: 1 бутылка охоты крепкой\n\n🍾 Описание: Металлическая открывашка с культовым символом Ягермейстера — незаменимый инструмент для любой вечеринки.\n\n⚙️ Материал: Нержавеющая сталь, устойчивая к коррозии.\n\n✨ Особенности: \n• Открывает любые бутылки: пиво, охоту, лимонад, шампанское\n• Можно повесить на связку ключей — всегда под рукой\n• Компактный размер, помещается в любой карман\n\n🚚 Доставка: Отправляем в любую компанию."
+                },
+                salefourth: {
+                    name: "Набор 'Собутыльники'",
+                    photo: "https://i.ebayimg.com/images/g/LmUAAOSw559nQEI5/s-l400.jpg",
+                    info: "⭐ Цена: 1 бутылка охоты крепкой\n\n🎁 Описание: Готовый набор для идеальной вечеринки — всё, что нужно настоящему собутыльнику.\n\n📦 Состав: \n• Плюшевая бутылка Ягермейстера\n• Брелок Ягермейстер на ключи\n• Наклейка Ягермейстер (10х5 см)\n• Открывашка Ягермейстер\n\n🧵 Материалы: Мохер и плюш высшего качества, нержавеющая сталь, винил.\n\n✨ Особенности: \n• Всё в одном наборе — не нужно собирать по отдельности\n• Подходит для подарка охотнику, рыбаку и просто хорошему человеку\n• Набор переживёт не одну вечеринку\n\n🚚 Доставка: Отправляем в любую компанию."
+                },
+                salefifth: {
+                    name: "Наклейка Ягермейстер",
+                    photo: "https://avatars.mds.yandex.net/i?id=24af9c38671990da31333f45c1298231021fecf9-9067511-images-thumbs&n=13",
+                    info: "⭐ Цена: 1 бутылка охоты крепкой\n\n🖼️ Описание: Виниловая наклейка с культовым символом Ягермейстера. Яркая и долговечная.\n\n📏 Размер: 10х5 см\n🧵 Материал: Прочный винил, не боится влаги и ультрафиолета\n🧲 Крепление: на любую гладкую поверхность\n\n✨ Особенности: \n• Быстрое нанесение без пузырей\n• Можно переклеивать\n\n🚚 Доставка: Отправляем в любую компанию."
+                },
+                saleseventh: {
+                    name: "Наклейка на автомобиль 'Паук'",
+                    photo: "https://avatars.mds.yandex.net/i?id=f5e8a17f10e53dbff657d1659cc9909aefad4969-8266553-images-thumbs&n=13",
+                    info: "⭐ Цена: 1 бутылка охоты крепкой\n\n🕷️ Описание: Крупная виниловая наклейка с культовым изображением Паука — дань уважения классике.\n\n📏 Размер: 20х15 см, идеально на бензобак, капот или заднее стекло\n🧵 Материал: Автомобильный винил, не выгорает\n\n✨ Особенности: \n• Привлекает внимание на дороге\n• Добавляет +30 лошадиных сил визуально\n\n🚚 Доставка: Отправляем в любую компанию."
+                },
+                saleeight: {
+                    name: "Уточка на панель в машину",
+                    photo: "https://avatars.mds.yandex.net/i?id=42459a9acb8dc6daa34d243af1dd85cf21bb4e3c-4612626-images-thumbs&n=13",
+                    info: "⭐ Цена: 1 бутылка охоты крепкой\n\n🐤 Описание: Мягкая уточка на присоске для украшения интерьера автомобиля.\n\n🧵 Материал: Мягкий плюш, безопасный для лобового стекла\n🔩 Крепление: Прочная присоска, не отваливается на кочках\n\n✨ Особенность: Качает головой при движении — очень забавно\n\n🚚 Доставка: Отправляем в любую компанию."
+                }
+            };
+
+            const members = document.querySelectorAll('.member_sal');
+            const modal = document.getElementById('myModal');
+            const modalPhoto = document.getElementById('modal-photo');
+            const modalName = document.getElementById('name-sale');
+            const modalInfo = document.getElementById('modal-info');
+            const closeSpan = document.querySelector('.close');
+
+            function showSale(saleId) {
+                const product = sale[saleId];
+                if (product) {
+                    modalPhoto.src = product.photo;
+                    modalName.textContent = product.name;
+                    modalInfo.textContent = product.info;
+                    modal.style.display = 'flex';   // flex — чтобы работало центрирование
+                    document.body.style.overflow = 'hidden'; // блокируем прокрутку боди
+                }
+            }
+
+            function hideModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';   // возвращаем прокрутку
+            }
+
+            // обработчики кликов по карточкам
+            members.forEach(function(card) {
+                card.addEventListener('click', function(e) {
+                    const saleId = card.getAttribute('data-sale');
+                    if (saleId) showSale(saleId);
+                });
+            });
+
+            // закрытие по крестику
+            closeSpan.addEventListener('click', hideModal);
+
+            // закрытие по клику на фон (только на сам модальный фон)
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) hideModal();
+            });
+        });
+    </script>
+</body>
+</html>

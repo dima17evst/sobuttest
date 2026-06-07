@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Собутыльники — Трезвый водила</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(89, 152, 1));
+            min-height: 100vh;
+        }
+        .conteiner{
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px){
+            .conteiner{
+                width: 95%;
+            }
+        }
+
+        /* ШАПКА — АДАПТИВ */
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .head_ {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 20px;
+            }
+            .buttons {
+                justify-content: center;
+                width: 100%;
+            }
+            .buttons_ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .cup {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0;
+            }
+        }
+
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+
+        @media (max-width: 640px) {
+            .namesite {
+                font-size: 1.5rem;
+            }
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 20px;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .cup {
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            transition: all 0.6s;
+        }
+
+        @media (max-width: 640px) {
+            .cup {
+                font-size: 14px;
+                margin: 5px;
+                padding: 6px 10px;
+            }
+        }
+
+        .cup:hover {
+            transform: scale(1.1);
+            background: rgb(89, 152, 1);
+            color: white;
+        }
+
+        .buttons_ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Кнопка НАЗАД */
+        .back {
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            transition: all 0.4s;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .back:hover {
+            transform: translateX(20px);
+            color: white;
+            background: red;
+        }
+
+        @media (max-width: 640px) {
+            .back:hover {
+                transform: translateX(10px);
+            }
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .info-text h3 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.7rem;
+            padding: 0 0 0 10px;
+            color: #ffd966;
+        }
+
+        @media (max-width: 640px) {
+            .info-text h3 {
+                font-size: 1.4rem;
+                text-align: center;
+                padding: 0;
+            }
+        }
+
+        .info {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text p {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ccc;
+            padding: 20px 0 0 10px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 640px) {
+            .info-text p {
+                font-size: 0.95rem;
+                padding: 15px 0 0 0;
+                text-align: center;
+            }
+        }
+
+        .input {
+            padding: 20px 0 0 10px;
+        }
+
+        .number {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.1rem;
+            background-color: rgb(255, 255, 255);
+            border-radius: 20px;
+            height: 30px;
+            width: 270px;
+            padding: 0 10px;
+        }
+
+        .cont {
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            margin: 20px 0 0 90px;
+            background-color: #ccc;
+            border-radius: 20px;
+        }
+
+        .photo {
+            flex: 0 0 400px;
+            max-width: 400px;
+            margin: 20px 0 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .photo {
+                flex: auto;
+                max-width: 280px;
+                margin: 20px auto 0;
+            }
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            background-color: #ccc;
+        }
+
+        .select {
+            display: inline-block;
+            background: white;
+            color: black;
+            border-radius: 20px;
+            padding: 12px 30px;
+            cursor: pointer;
+            transition: all 0.4s;
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .select:hover {
+            transform: translateX(20px);
+            background: rgb(89, 152, 1);
+            color: white;
+        }
+
+        @media (max-width: 640px) {
+            .select {
+                display: block;
+                text-align: center;
+                margin: 30px auto 0;
+                width: fit-content;
+            }
+            .select:hover {
+                transform: translateX(10px);
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                padding: 0;
+            }
+        }
+
+        /* Блок отзывов — отдельные карточки (переписано под услугу "Трезвый водила") */
+        .reviews-block {
+            background: rgba(253, 255, 247, 0.5);
+            padding: 25px;
+            border-radius: 20px;
+            width: 100%;
+            margin-top: 40px;
+            transition: all 0.3s;
+        }
+
+        .reviews-block:hover {
+            background: rgba(253, 255, 247, 0.75);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .reviews-title {
+            display: inline-block;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        @media (max-width: 640px) {
+            .reviews-block {
+                padding: 15px;
+            }
+            .reviews-title {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+        }
+
+        .review-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+            border-left: 5px solid #ffd700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .review-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .review-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .review-author {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-author::before {
+            content: "👤";
+            font-size: 1rem;
+        }
+
+        .review-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #3a3a3a;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .review-item {
+                padding: 12px 16px;
+                margin-bottom: 12px;
+            }
+            .review-author {
+                font-size: 0.95rem;
+            }
+            .review-text {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники🍾</p>
+        </div>
+        <div class="buttons">
+            <ul class="buttons_ul">
+                <a href="sale.html" class="cup">Товары</a>
+                <a href="titel.html" class="cup">Главная</a>
+                <a href="alco.html" class="cup">Побухать</a>
+                <a href="index.html" class="cup">О нас</a>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main class="content">
+            <a href="usl.html" class="back">← Назад</a>
+            <div class="info">
+                <div class="info-text">
+                    <h3>Трезвый водила 🚗</h3>
+                    <p>Данная услуга предоставляет вам водителя, который довезет вас из точки А в точку Б.<br><br>
+                    Казалось бы, обычное такси, но в нашем такси вам предоставляется:<br>
+                    🍸 Мини-бар<br>
+                    💨 Автомобильный кальян<br>
+                    🎵 Прокат по ночному городу под громкую музыку (по желанию) — светофоры, набережные, любимые треки на полную громкость<br><br>
+                    <strong>Почему мы?</strong><br>
+                    - Водитель абсолютно трезв и вежлив<br>
+                    - Вы отдыхаете — мы везём<br>
+                    - Безопасность и комфорт в каждой поездке<br>
+                    - Фиксированная цена, без сюрпризов на счётчике<br><br>
+                    <strong>Дополнительные возможности:</strong><br>
+                    🚬 Разрешен электронный и обычный табак (проветривание салона)<br>
+                    📱 Bluetooth / AUX для вашей музыки<br>
+                    🧊 Холодильник с напитками в салоне<br>
+                    🌙 Остановка в любых живописных местах по маршруту<br>
+                    👥 Вместительность до 4 пассажиров<br>
+                    </p>
+                </div>
+                <div class="photo">
+                    <img src="https://sun9-17.userapi.com/s/v1/ig2/e4syYHhQE6rQ27DF7P5PWsKYrI_Vnh4srXlnJaFrdiFHPLcM6I4Pff98FGz52hD7rtZJRMrNhWk6TkezCfW7w237.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&from=bu&u=9tNjhxr6X5Sfn1-7ZxOqy5Hf_TF8bfD5PBwC3WNt0w8&cs=640x0" alt="Трезвый водитель">
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <a href="price.html" class="select">Оформить заказ</a>
+            </div>
+
+            <!-- Блок отзывов — специально переписан под услугу "Трезвый водила" -->
+            <div class="reviews-block">
+                <h1 class="reviews-title">🚗 Отзывы о трезвом водиле</h1>
+                
+                <div class="review-item">
+                    <div class="review-author">Артём, 28 лет</div>
+                    <p class="review-text">"Всё супер! Заказал трезвого водилу после корпоратива — мини-бар спас ситуацию, а кальян в машине это ваще бомба. Доехали с комфортом, музыку включили свою, водитель вежливый и реально трезвый. В следующий раз только к вам!"</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-author">Кристина, 24 года</div>
+                    <p class="review-text">"Огромное спасибо за поездку! Мы с подругами заказали ночной тур по городу с музыкой и остановками у красивых мест. Водитель терпеливо ждал, пока мы фоткались, помог с выбором треков. Атмосфера незабываемая, будем рекомендовать всем!"</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-author">Денис, 35 лет</div>
+                    <p class="review-text">"Пользовался разными трезвыми водителями, но этот сервис — лучший. Машина чистая, кондиционер, холодильник с напитками. Фиксированная цена без сюрпризов — это очень радует. Водитель приехал за 10 минут, довёз аккуратно. 10/10"</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-author">Ольга, 31 год</div>
+                    <p class="review-text">"Заказывали для мужа на день рождения. Он был очень удивлён: мини-бар, музыка, крутая подача. Водитель абсолютно вежливый и тактичный, помог с именинником. Спасибо, что есть такой сервис. Теперь только к вам обращаемся!"</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-author">Сергей, 42 года</div>
+                    <p class="review-text">"Часто езжу на деловые встречи с партнёрами, после них иногда нужно доставить гостей в отель. Очень удобно: заказал трезвого водилу, он подождал, помог с багажом. В машине предложили напитки и свежий кальян. Клиенты в восторге, спасибо!"</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

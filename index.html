@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Собутыльники — адаптивная версия</title>
+    <style>
+        /* ---------- ГЛОБАЛЬНЫЕ СБРОСЫ И БАЗА ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to bottom right, black, yellow);
+            min-height: 100vh;
+        }
+
+        /* ---------- ШАПКА: ГИБКАЯ ВЕРСТКА ---------- */
+        .site-header {
+            background-color: black;
+            padding: 20px 24px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        .logo p {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+            margin: 0;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Навигационное меню — горизонтальное по умолчанию */
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .nav-menu a {
+            display: inline-block;
+            color: #ffffff;
+            font-size: 20px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 24px;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-weight: 500;
+            border: 1px solid rgba(255,255,0,0.3);
+            backdrop-filter: blur(2px);
+        }
+
+        /* Эффект при наведении (десктоп) */
+        .nav-menu a:hover {
+            transform: scale(1.05);
+            background: #ffcc00;
+            color: #000000 !important;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            border-color: #ffcc00;
+        }
+
+        /* Адаптив для телефонов: кнопки становятся вертикально */
+        @media (max-width: 768px) {
+            .site-header {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+                padding: 16px 16px;
+            }
+
+            .logo p {
+                font-size: 1.8rem;
+                text-align: center;
+            }
+
+            /* МЕНЯЕМ ГОРИЗОНТАЛЬНЫЙ СПИСОК НА ВЕРТИКАЛЬНЫЙ */
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+                gap: 12px;
+            }
+
+            .nav-menu a {
+                display: block;
+                width: 100%;
+                text-align: center;
+                padding: 12px 16px;
+                font-size: 1.2rem;
+                background: #111;
+                border-radius: 60px;
+            }
+
+            /* карточки людей: фото сверху, текст снизу */
+            .member {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            .member_photo {
+                max-width: 80% !important;
+                margin: 0 auto 20px auto !important;
+            }
+            .member_text {
+                font-size: 1rem !important;
+                padding: 15px !important;
+            }
+            .member_text h3 {
+                font-size: 1.5rem !important;
+            }
+
+            /* авто-блоки вертикально */
+            .info-avto {
+                flex-direction: column !important;
+                text-align: center;
+            }
+            .img-avto {
+                max-width: 80% !important;
+                margin: 0 auto 20px auto !important;
+            }
+            .avto-text {
+                font-size: 1rem !important;
+                padding: 15px !important;
+            }
+            .avto-text h3 {
+                font-size: 1.5rem !important;
+            }
+            .header-avto {
+                font-size: 1.6rem !important;
+            }
+            .container {
+                width: 95% !important;
+            }
+        }
+
+        /* Дополнительные стили для карточек, которые нельзя задать инлайн */
+        .member, .info-avto {
+            transition: all 0.3s ease;
+        }
+        .member:hover, .info-avto:hover {
+            transform: scale(1.01);
+            background: rgba(180, 160, 100, 0.25);
+        }
+
+        /* Контейнер */
+        .container {
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        main {
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Карточки людей по умолчанию: чередование на десктопе */
+        @media (min-width: 769px) {
+            .member:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+            .info-avto:nth-child(even) {
+                flex-direction: row-reverse;
+            }
+        }
+
+        .member, .info-avto {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 28px;
+            background: rgba(162, 140, 140, 0.2);
+            border-radius: 28px;
+            padding: 20px;
+            backdrop-filter: blur(2px);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .member_photo, .img-avto {
+            flex: 0 0 250px;
+            max-width: 250px;
+        }
+
+        .member_photo img, .img-avto img {
+            width: 100%;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            background-color: #ccc;
+        }
+
+        /* Галерея для авто: два изображения одно под другим */
+        .img-avto {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .member_text, .avto-text {
+            flex: 1;
+            color: white;
+            font-size: 1.2rem;
+            line-height: 1.45;
+            background: rgba(0,0,0,0.55);
+            padding: 22px;
+            border-radius: 24px;
+            backdrop-filter: blur(4px);
+        }
+
+        .member_text h3, .avto-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 12px;
+            color: #ffd966;
+        }
+
+        .header-avto {
+            text-align: center;
+            font-family: inherit;
+            font-size: 2rem;
+            padding: 12px 0;
+            background: rgb(226, 226, 226);
+            border-radius: 60px;
+            margin: 40px 0 30px;
+            font-weight: bold;
+            color: #1f1f1f;
+            letter-spacing: 1px;
+        }
+
+        .tg-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            margin-top: 12px;
+            background: rgba(0,0,0,0.5);
+            padding: 6px 18px;
+            border-radius: 40px;
+            transition: 0.2s;
+        }
+        .tg-link:hover {
+            background: #1f5c8f;
+            transform: scale(1.02);
+        }
+        .tg-link span {
+            color: #ffd966;
+            font-weight: 500;
+        }
+        .tg-icon {
+            width: 28px;
+            height: 28px;
+            transition: 0.2s;
+        }
+
+        /* убираем подчеркивание у ссылок-оберток */
+        .member-link {
+            text-decoration: none;
+            display: block;
+        }
+
+        /* кнопка в телеграм */
+        a[target="_blank"] .tg {
+            font-weight: bold;
+        }
+
+        /* для очень узких экранов (до 480px) дополнительный комфорт */
+        @media (max-width: 480px) {
+            .nav-menu a {
+                font-size: 1rem;
+                padding: 10px 12px;
+            }
+            .member_photo, .img-avto {
+                max-width: 95% !important;
+            }
+            .member_text p, .avto-text p {
+                font-size: 0.95rem;
+            }
+            .logo p {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ШАПКА С ВЕРТИКАЛЬНЫМ МЕНЮ НА ТЕЛЕФОНЕ -->
+<header class="site-header">
+    <div class="logo">
+        <p>Собутыльники🍾</p>
+    </div>
+    <ul class="nav-menu">
+        <li><a href="titel.html">Главная</a></li>
+        <li><a href="sale.html">Товары</a></li>
+        <li><a href="alco.html">Побухать</a></li>
+        <li><a href="usl.html">Услуги</a></li>
+    </ul>
+</header>
+
+<!-- ОСНОВНОЙ КОНТЕЙНЕР -->
+<div class="container">
+    <main>
+        <!-- Заголовок "О нас" -->
+        <div class="sostav" style="font-size: 2rem; line-height: 1.8; color: #f0f0f0; list-style: none; margin: 0 0 10px 0; font-weight: bold;">
+            🍻 О нас
+        </div>
+
+        <!-- КАРТОЧКА МАКСИМА -->
+        <a href="info-Maksim.html" class="member-link">
+            <div class="member">
+                <div class="member_photo">
+                    <img src="https://sun9-15.userapi.com/s/v1/ig2/N8aqxc0O8yhYoBbmWILgZKU_h-2qLpvKCD6Uywz6VVwd5Dg-AGwV069WiKoJtxDjqf0xajCysqsEakguDGEdcs7N.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=qPGimqRUU0FSZ4O4kgpKBy4qNdr9xqrVx8K9Xfh1xr4&cs=960x0" alt="Андреев Максим">
+                </div>
+                <div class="member_text">
+                    <h3>Андреев Максим</h3>
+                    <p>Максим самый старый в команде. Любит страдать хуйней и лежать на диване. Имеет охренительную тачку ХУЙдай акцент. Охуенный тип.</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- КАРТОЧКА КРИСТИНЫ -->
+        <a href="info-Kristina.html" class="member-link">
+            <div class="member">
+                <div class="member_photo">
+                    <img src="https://sun9-66.userapi.com/s/v1/ig2/FuN0bdQav_Yy1HVOWMbiC81aJz3fH9B2qm2M2qhsy18D37Pf47DXVLXjovL-EChKevYuxspQno3wSvOUlm5u-pDG.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&from=bu&cs=640x0" alt="Андреева Кристина">
+                </div>
+                <div class="member_text">
+                    <h3>Андреева Кристина</h3>
+                    <p>Мастер игры на гитаре. Веселая девченка, учится в школе, бывает опаздывает на уроки. Сестра Максима.</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- КАРТОЧКА ЕВСТИФЕЕВА ДМИТРИЯ -->
+        <a href="info-me.html" class="member-link">
+            <div class="member">
+                <div class="member_photo">
+                    <img src="https://sun9-24.userapi.com/s/v1/ig2/cOBqNKzzbMy8V8Jg8bRKq76ODUJ09NGMMgJxyEKNxLPn_0C7tILxsn_p2AKVFCPMN86lDozvU4H6sJKAEY5F_-Fh.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1200x1600&from=bu&u=cT2EhleUj0DwkjidP_8UASKrV5-fK1-ZdZ8zbjA73Yw&cs=1080x0" alt="Евстифеев Дмитрий">
+                </div>
+                <div class="member_text">
+                    <h3>Евстифеев Дмитрий</h3>
+                    <p>Просто чиловый парень. Учится на программиста (он и написал этот сайт). Больше про себя ничего не могу сказать...</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- КАРТОЧКА ЕГОРА -->
+        <a href="info-Egor.html" class="member-link">
+            <div class="member">
+                <div class="member_photo">
+                    <img src="https://sun9-15.userapi.com/s/v1/ig2/3BgOVjm7o_STf1KiRwra58WWPZM56vfx6V3iC4S1aPOvsxaznOMJ5cmeSRmHsyq4s48npsvE03jTffpcPb_QUxnF.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&from=bu&u=psrJIqTijaX25bArXGKzzNVqO0diCRvenjYAVG0hjs4&cs=640x0" alt="Марченко Егор">
+                </div>
+                <div class="member_text">
+                    <h3>Марченко Егор</h3>
+                    <p>Это наш любимый Егорушка, так сказать душа компании. Отбитый тип, но если честно без него было бы пиздец как скучно.</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- КАРТОЧКА ДАРЬИ -->
+        <a href="info-Daria.html" class="member-link">
+            <div class="member">
+                <div class="member_photo">
+                    <img src="https://sun9-51.userapi.com/s/v1/ig2/0sPWrt_k6ZtlQuOWUZUxN7ErhoYz7NuLhE3A_ZkyRzHx0OO3SrjwQ4x8416KblOMOeunqKh6nhWCLMGBdiTjg4V9.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=914y2E7JFxITd1qFRU1YoHb2qisB5JfQgxHDXCMsWOE&cs=960x0" alt="Ростемберская Дарья">
+                </div>
+                <div class="member_text">
+                    <h3>Ростемберская Дарья</h3>
+                    <p>Это Дарья, наш будущий врач. Вторая по старости в компании. Любит тусить и отрываться по полной, правда потом жалеет об этом с бутылкой минералки в руках... Короче самая движовая.</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- КАРТОЧКА ТУРКИНА ДМИТРИЯ -->
+        <a href="info-Dima.html" class="member-link">
+            <div class="member">
+                <div class="member_photo">
+                    <img src="https://sun9-85.userapi.com/s/v1/ig2/hMmAvf9cmFrJsoEFC5hV5phSi8ahsS86tbJblFDPN8vg8r8fcIZrGTiHeS2wMMFwj0x1pjp0usENfc33jhSdKERe.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440&from=bu&u=WhL5JKPKXX5kyjIxTjJzaYZixbGJhvEZNgRY-AMN2os&cs=1080x0" alt="Туркин Дмитрий">
+                </div>
+                <div class="member_text">
+                    <h3>Туркин Дмитрий</h3>
+                    <p>А это Димас самый разумный и адекватный из нашей компании, так сказать "тот самый трезвый друг", кайфовый чувак, имееет вайб.</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- КАРТОЧКА ТУРКИНОЙ ТАТЬЯНЫ -->
+        <a href="info-Tanya.html" class="member-link">
+            <div class="member">
+                <div class="member_photo">
+                    <img src="https://sun9-40.userapi.com/s/v1/ig2/CUmSTP-44N8sgY2OmnxLPDtCu-XTz6L5E0mMa9Ul3Rb-Mk6qlrdzEuUhxaYbghSCiCSeQbuC3qWXoXtjZPdNn323.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440&from=bu&u=tnLMof8XbYqIjTykht2rEGZ3Cv3YDt4EC4duNFBo4Gs&cs=1080x0" alt="Туркина Татьяна">
+                </div>
+                <div class="member_text">
+                    <h3>Туркина Татьяна</h3>
+                    <p>А это Таня, сестра Димас который "Тот самый трезвый друг". Самый младший участиник компании. Но помоему самый адекватный.</p>
+                </div>
+            </div>
+        </a>
+
+        <!-- Блок НАШИ АВТОМОБИЛИ -->
+        <h3 class="header-avto">🚗 Наши автомобили 🚙</h3>
+
+        <!-- Hyundai Accent -->
+        <div class="info-avto">
+            <div class="img-avto">
+                <img src="https://sun9-35.userapi.com/s/v1/ig2/Kvb6LTQcTSodS-7ZZoIQBg9zUStC0R5LYXJlloh9g8HJRwaOSAdeBZPDYVa1wz1U6yNqHDe1Zay9j1pXjlSJ_rDg.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=ny0YZQCtw9rpG4YDBnlGjFbjj8InFWhXm4bDMrvs1a4&cs=960x0" alt="Hyundai Accent">
+                <img src="https://sun9-17.userapi.com/s/v1/ig2/e4syYHhQE6rQ27DF7P5PWsKYrI_Vnh4srXlnJaFrdiFHPLcM6I4Pff98FGz52hD7rtZJRMrNhWk6TkezCfW7w237.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640&from=bu&cs=640x0" alt="Hyundai Accent logo">
+            </div>
+            <div class="avto-text">
+                <p><strong>Hyundai Accent</strong> — автомобиль корейского происхождения, созданный гениальными инженерами и дизайнерами с ахуенным вкусом и стилем.</p>
+                <p>Хозяин авто: "Моё представление об этой машине во время покупки выглядело так, что я вообще её воспринимать не мог, потому что HYUNDAI. Но, прокатившись на ней, я понял, что машина будет интересней любой Приоры по комфорту, и со временем я всё-таки начал её воспринимать. <br><br>
+                Вот уже два года я на ней за рулём, и ни разу у меня не появлялось желания её продать (кроме моментов, когда я был сильно на колене). Запчасти — копейки стоят, ремонт можно сделать в любом гараже (при желании), но я себе не доверяю, поэтому езжу по сервисам. <br><br>
+                С этой машиной очень много различных историй происходило — и хороших, и не очень. И как бы то ни было, продавать её я не намерен (хотя могу про это частенько говорить), и если буду менять, то только на такой же Accent. Машина для своих лет сохранена даже очень хорошо, несмотря на косяк одного моего лучшего друга))) <br><br>
+                В общем, машинка — огонь. Если кому интересно, мой тг: RaffCars — расскажу более подробно о ней и о своём времени владения данным аппаратом."</p>
+                <a href="https://t.me/HyundaiAccentSila" target="_blank" class="tg-link">
+                    <img src="https://images.icon-icons.com/3132/PNG/512/telegram_social_network_communication_chat_interaction_icon_192276.png" alt="Telegram" class="tg-icon">
+                    <span class="tg">HyundaiAccentSila</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Lada Niva Legend -->
+        <div class="info-avto">
+            <div class="img-avto">
+                <img src="https://sun9-20.userapi.com/s/v1/ig2/_yIApc28XxuPIBrjQMMxRE8J7im00121Af0NNt9VZZ-gQbhSPzIUoNt6Z3VvjXNo2Z_8pzpD1sbA5TOG4bA_nIxU.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&u=Ft1_LEnkv1jPbHnE9u3sSNaPRv4DeCfomOgMPpyusDo&cs=2560x0" alt="Lada Niva Legend">
+                <img src="https://sun9-88.userapi.com/s/v1/ig2/whuR88ptNMomtlsP3YduWuJwzlDywKZ_sB7euolMHf2RZ2u8sY0Kc-3jKMhSjCg2mE-Jwqcd3aqpcVziNwZjsStM.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=GHf4b2c3pwluWDSgCCg3KVEm-daUUpxw9c0xaTyecjM&cs=960x0" alt="Niva interior">
+            </div>
+            <div class="avto-text">
+                <p><strong>Lada Niva Legend</strong><br>
+                Это автомобиль отца Димы (автора сайта). Приобрели они его в 2024 году. Машинка свежая, веселая, проходимая если умело работать техникой.</p>
+                <p>Дима: "Автомобиль классный, во время покупки я не думал что это интересная машина, но прокатившись на ней я сразу понял что не ней я буду ездить очень часто. <br><br>
+                Она мне зашла своей простотой и уникальностью, казалось бы купе повышенной проходимости, но дарит порой такие эмоции что не передать словами. Нива это машина легенда, вот её как спроектировали в 1977 году идеальной она до сих пор заставляет большинство мужчин уважать её и любить. <br><br>
+                Гонять я начал в 2025 году эмоции непередаваемые, юркая, шустрая, мягенькая, вид имеет. В общем машинка классная мне нравится!"</p>
+            </div>
+        </div>
+
+        <!-- Niva Chevrolet -->
+        <div class="info-avto">
+            <div class="img-avto">
+                <img src="https://sun9-3.userapi.com/s/v1/ig2/wPxbq3tpVK1SyLPjDYh28ZmK4UuWJ_K3gRXSWkqCnueDwEHV1TKKxArZjS0GP74WDn0Ue_GoYBRz2ytdtw3TNN_E.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=xK3ucd5_fH_2Sk0UYjTpYU1cug0vqCnuteD96CykVhs&cs=960x0" alt="Chevrolet Niva">
+                <img src="https://sun9-3.userapi.com/s/v1/ig2/Y3g2HhrdiS5t0GavsfxfryXpk-Uskrjn94qpYu8vBOaFgOQUDdhMdJJbo8C66cmsF_pz9r8s9X5mnvcx1a5LpyVT.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=NuzFmLxtVBIhUoz5E4FOy0V9UZFMiBhnbBRPDwb9vMY&cs=960x0" alt="Chevrolet Niva offroad">
+            </div>
+            <div class="avto-text">
+                <p><strong>Niva Chevrolet</strong> — в целом этот автомобиль бюджетный вариант для внедорожника за такую цену лучше этой машины не найти.</p>
+                <p>Егор: "Потому что другие дорогие иномарки в сельской местности банально будет жалко вгонять в грязь и тд как ощущается эта машина на дороге. <br><br>
+                Она отзывчивая к управлению (механика), на трассе едет уверенно, но тяжело разгоняется если еще включен кондиционер. Эту машину ну вообще в принципе это дело вкуса, но лично мне этот автомобиль очень нравится. <br><br>
+                Она на мой взгляд надёжнее чем нива тревел. Этому автомобилю почти 10 лет, но все равно она довозила куда надо. Мы и на море ездили, и по лесам по окна в грязи ездили — она всегда возвращала нас домой."</p>
+            </div>
+        </div>
+
+    </main>
+</div>
+</body>
+</html>

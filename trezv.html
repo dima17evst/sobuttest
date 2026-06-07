@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Собутыльники</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background-color: rgb(34, 39, 69);
+            background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(89, 152, 1));
+        }
+        .conteiner{
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px){
+            .conteiner{
+                width: 95%;
+            }
+        }
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+        .content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .buttons{
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .cup{
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            transition: all 0.6s;
+        }
+        .cup:hover{
+            transform: scale(1.1);
+            background: rgb(89, 152, 1);
+            color: white;
+            /* box-shadow: 0 8px 20px; */
+        }
+        .buttons_ul{
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        .cards{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .cards-usl{
+            width: calc(50% - 15px);
+            box-sizing: auto;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            cursor: pointer;
+            
+            backdrop-filter: blur(2px);
+        }
+        .name-card{
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.2rem;
+            color: rgb(255, 255, 255);
+        } 
+        .img-card{
+            flex: 0 0 250px; 
+            max-width: 250px;
+        }
+        .img-card img{
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+        .menu {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 0;
+            padding: 30px 20px 10px 20px;
+            color: #cfcfcf;
+            font-size: 40px;
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники</p>
+        </div>
+        <div class = "buttons">
+            <ul class = "buttons_ul">
+                <a href = "sale.html" class = "cup">Товары</a>
+                <a href = "titel.html" class = "cup">Главная</a>
+                <a href = "alco.html" class = "cup">Побухать</a>
+                <a href = "index.html" class = "cup">О нас</a>
+            </ul>
+        </div>
+    </header>

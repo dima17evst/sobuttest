@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Собутыльники — Конвой</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(89, 152, 1));
+            min-height: 100vh;
+        }
+        .conteiner{
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px){
+            .conteiner{
+                width: 95%;
+            }
+        }
+
+        /* ШАПКА — АДАПТИВ */
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .head_ {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 20px;
+            }
+            .buttons {
+                justify-content: center;
+                width: 100%;
+            }
+            .buttons_ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .cup {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0;
+            }
+        }
+
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+
+        @media (max-width: 640px) {
+            .namesite {
+                font-size: 1.5rem;
+            }
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 20px;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .cup {
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            transition: all 0.6s;
+        }
+
+        @media (max-width: 640px) {
+            .cup {
+                font-size: 14px;
+                margin: 5px;
+                padding: 6px 10px;
+            }
+        }
+
+        .cup:hover {
+            transform: scale(1.1);
+            background: rgb(89, 152, 1);
+            color: white;
+        }
+
+        .buttons_ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Кнопка НАЗАД */
+        .back {
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            transition: all 0.4s;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .back:hover {
+            transform: translateX(20px);
+            color: white;
+            background: red;
+        }
+
+        @media (max-width: 640px) {
+            .back:hover {
+                transform: translateX(10px);
+            }
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .info-text h3 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.7rem;
+            padding: 0 0 0 10px;
+            color: #ffd966;
+        }
+
+        @media (max-width: 640px) {
+            .info-text h3 {
+                font-size: 1.4rem;
+                text-align: center;
+                padding: 0;
+            }
+        }
+
+        .info {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text p {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ccc;
+            padding: 20px 0 0 10px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 640px) {
+            .info-text p {
+                font-size: 0.95rem;
+                padding: 15px 0 0 0;
+                text-align: center;
+            }
+        }
+
+        .input {
+            padding: 20px 0 0 10px;
+        }
+
+        @media (max-width: 640px) {
+            .input {
+                text-align: center;
+                padding: 20px 0 0 0;
+            }
+        }
+
+        .number {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.1rem;
+            background-color: rgb(255, 255, 255);
+            border-radius: 20px;
+            height: 40px;
+            width: 270px;
+            padding: 0 15px;
+            border: none;
+        }
+
+        .cont {
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            padding: 10px 25px;
+            margin: 20px 0 0 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .cont:hover {
+            background: rgb(89, 152, 1);
+            color: white;
+            transform: translateX(10px);
+        }
+
+        @media (max-width: 640px) {
+            .cont {
+                display: block;
+                text-align: center;
+                margin: 20px auto 0;
+                width: fit-content;
+            }
+        }
+
+        .photo {
+            flex: 0 0 300px;
+            max-width: 300px;
+            margin: 20px 0 20px 20px;
+        }
+
+        @media (max-width: 768px) {
+            .photo {
+                flex: auto;
+                max-width: 280px;
+                margin: 20px auto 0;
+            }
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            background-color: #ccc;
+            margin-bottom: 15px;
+        }
+
+        .photo img:last-child {
+            margin-bottom: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                padding: 0;
+            }
+        }
+
+        /* Блок отзывов — отдельные карточки (переписано под услугу Конвой) */
+        .reviews-block {
+            background: rgba(253, 255, 247, 0.5);
+            padding: 25px;
+            border-radius: 20px;
+            width: 100%;
+            margin-top: 40px;
+            transition: all 0.3s;
+        }
+
+        .reviews-block:hover {
+            background: rgba(253, 255, 247, 0.75);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .reviews-title {
+            display: inline-block;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        @media (max-width: 640px) {
+            .reviews-block {
+                padding: 15px;
+            }
+            .reviews-title {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+        }
+
+        .review-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+            border-left: 5px solid #ffd700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .review-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .review-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .review-author {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-author::before {
+            content: "👤";
+            font-size: 1rem;
+        }
+
+        .review-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #3a3a3a;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .review-item {
+                padding: 12px 16px;
+                margin-bottom: 12px;
+            }
+            .review-author {
+                font-size: 0.95rem;
+            }
+            .review-text {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники🍾</p>
+        </div>
+        <div class="buttons">
+            <ul class="buttons_ul">
+                <a href="titel.html" class="cup">Главная</a>
+                <a href="sale.html" class="cup">Товары</a>
+                <a href="alco.html" class="cup">Побухать</a>
+                <a href="index.html" class="cup">О нас</a>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main class="content">
+            <a href="usl.html" class="back">← Назад</a>
+            <div class="info">
+                <div class="info-text">
+                    <h3>Конвой 🚗🚗🚗</h3>
+                    <p>Данная услуга представляет собой организованные групповые поездки на автомобилях под руководством лидера.<br><br>
+                    Вы звоните, оставляете заявку: сколько машин, какой маршрут (или доверяете нам), какие пожелания по стилю езды. Наш ведущий на подготовленном автомобиле возглавляет колонну, прокладывает маршрут, координирует движение и довозит всю группу от точки А до точки Б (или по кольцевому маршруту). Оплата за организацию и ведение конвоя.<br><br>
+                    <strong>Почему мы?</strong><br>
+                    - Ведущий трезвый и опытный — знает маршруты, опасные участки и где можно разогнаться<br>
+                    - Едем строго по вашему запросу — от спокойной загородной поездки до динамичного конвоя<br>
+                    - Работаем на любых дорогах — трасса, город, кольцевая, серпантин, грунтовка<br>
+                    - Выдаём маршрутный лист и рекомендации — вы видите план поездки<br>
+                    - Оплата до выезда или по факту (на ваш выбор), никаких скрытых платежей<br>
+                    - Быстро: от звонка до выезда — от 30 минут (сбор конвоя до 1 часа)<br><br>
+                    <strong>Дополнительные возможности:</strong><br>
+                    📡 Можем организовать рации для всей колонны (выдача или свой канал)<br>
+                    🚗 Конвой до любого места — кафе, база отдыха, трек, фото-локация, другой город<br>
+                    🕒 Работаем круглосуточно (в том числе ночные покатушки)<br>
+                    💰 Фиксированная цена за организацию + за машину (от 3000 ₽ за конвой)<br>
+                    📸 По желанию — фото/видео сопровождение процесса (дрон или оператор)<br>
+                    🚻 Остановки в живописных местах по маршруту (общие фото, перекур, отдых)<br>
+                    🎵 Единый плейлист или связь через рацию с музыкой (по желанию группы)<br>
+                    </p>
+                    <a href="price.html" class="cont">Продолжить</a>
+                </div>
+                <div class="photo">
+                    <img src="https://sun9-54.userapi.com/s/v1/ig2/Ak-7_sUPPulKuvl7fjDp9UD347VNWhWSL6MTXe7OHjHsaJMhNjpXGFF_phHUI_qsy9F6Y9a_rF-fNaDqWAGVC-ji.jpg?quality=95&as=32x42,48x64,72x96,108x143,160x212,240x318,360x478,480x637,540x716,640x849,720x955,1080x1433&from=bu&cs=1080x0" alt="Конвой фото 1">
+                    <img src="https://sun9-29.userapi.com/s/v1/ig2/8hbBhumYpjxxwgf85PblOfSCV7nQq_mRHedSozNA0L0_WpWN8cNf6S3Xu7ttknPlz2NWMJQqqgeGzluea9THHuyI.jpg?quality=95&as=32x45,48x67,72x101,108x151,160x224,240x336,360x503,480x671,540x755,640x895,720x1007,1080x1510&from=bu&u=qlq9mXWIYQXZBGUxPZce2le8jMyakE2Zls40P8gJn8Y&cs=1080x0" alt="Конвой фото 2">
+                </div>
+            </div>
+
+            <!-- Блок отзывов — специально переписан под услугу "Конвой" -->
+            <div class="reviews-block">
+                <h1 class="reviews-title">🚗 Отзывы о конвое</h1>
+                
+                <div class="review-item">
+                    <div class="review-author">Владислав, 30 лет</div>
+                    <p class="review-text">"Организовали конвой на день рождения друга — 8 машин. Ведущий был на бронированном внедорожнике, отлично вёл колонну, предупреждал о ямах и камерах. Рации раздали, все остались довольны. Финальная точка — кафе у озера. Спасибо за чёткую работу!"</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-author">Кирилл, 27 лет</div>
+                    <p class="review-text">"Ездили конвоем на открытие мотосезона. Ведущий знал все красивые места для фото. Дорога была интересная, с остановками у смотровых площадок. Организация на 5+, связь по рации работала отлично. Обязательно закажем ещё!"</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-author">Марина, 33 года</div>
+                    <p class="review-text">"Заказывали конвой для свадебного кортежа. Всё прошло идеально: ведущий ждал опаздывающих, подстраивал скорость, подсказывал куда лучше встать для общего фото. Машины ехали стройно, никто не потерялся. Огромное спасибо за такой уровень сервиса!"</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-author">Алексей, 41 год</div>
+                    <p class="review-text">"Долго искал организаторов для ночного конвоя по городу. Ребята сделали всё чётко: маршрут проложили так, чтобы было красиво и безопасно. В конце устроили общее фото на набережной. Впечатления незабываемые, всем рекомендую!"</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-author">Денис, 35 лет</div>
+                    <p class="review-text">"Собрали колонну из 12 машин на выезд на базу отдыха. Ведущий приехал заранее, провёл инструктаж, раздал рации. В пути ни разу не потеряли ни одного авто, даже на сложных перекрёстках. Спасибо за профессионализм и отличное настроение!"</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-author">Екатерина, 29 лет</div>
+                    <p class="review-text">"Первый раз участвовала в конвое — очень понравилось! Ведущий был внимательным, в рации подсказывал повороты и предупреждал о лежачих полицейских. Остановки делали вовремя, все успели отдохнуть и сфоткаться. Теперь буду заказывать конвой для всех встреч с друзьями!"</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

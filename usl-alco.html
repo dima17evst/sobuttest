@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Собутыльники — Доставка алкоголя</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(89, 152, 1));
+            min-height: 100vh;
+        }
+        .conteiner{
+            max-width: 1400px;
+            width: 90%;
+            margin: 0 auto;
+        }
+        @media (max-width: 640px){
+            .conteiner{
+                width: 95%;
+            }
+        }
+
+        /* ШАПКА — АДАПТИВ */
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .head_ {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 20px;
+            }
+            .buttons {
+                justify-content: center;
+                width: 100%;
+            }
+            .buttons_ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .cup {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0;
+            }
+        }
+
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+
+        @media (max-width: 640px) {
+            .namesite {
+                font-size: 1.5rem;
+            }
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 20px;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .cup {
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            transition: all 0.6s;
+        }
+
+        @media (max-width: 640px) {
+            .cup {
+                font-size: 14px;
+                margin: 5px;
+                padding: 6px 10px;
+            }
+        }
+
+        .cup:hover {
+            transform: scale(1.1);
+            background: rgb(89, 152, 1);
+            color: white;
+        }
+
+        .buttons_ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Кнопка НАЗАД */
+        .back {
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            transition: all 0.4s;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        .back:hover {
+            transform: translateX(20px);
+            color: white;
+            background: red;
+        }
+
+        @media (max-width: 640px) {
+            .back:hover {
+                transform: translateX(10px);
+            }
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .info-text h3 {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.7rem;
+            padding: 0 0 0 10px;
+            color: #ffd966;
+        }
+
+        @media (max-width: 640px) {
+            .info-text h3 {
+                font-size: 1.4rem;
+                text-align: center;
+                padding: 0;
+            }
+        }
+
+        .info {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .info {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .info-text {
+            flex: 1;
+        }
+
+        .info-text p {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ccc;
+            padding: 20px 0 0 10px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 640px) {
+            .info-text p {
+                font-size: 0.95rem;
+                padding: 15px 0 0 0;
+                text-align: center;
+            }
+        }
+
+        .photo {
+            flex: 0 0 400px;
+            max-width: 400px;
+            margin: 20px 0 0 20px;
+        }
+
+        @media (max-width: 768px) {
+            .photo {
+                flex: auto;
+                max-width: 280px;
+                margin: 20px auto 0;
+            }
+        }
+
+        .photo img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            background-color: #ccc;
+        }
+
+        .select {
+            display: inline-block;
+            background: white;
+            color: black;
+            border-radius: 20px;
+            padding: 12px 30px;
+            cursor: pointer;
+            transition: all 0.4s;
+            margin-top: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-align: center;
+        }
+
+        .select:hover {
+            transform: translateX(20px);
+            background: rgb(89, 152, 1);
+            color: white;
+        }
+
+        @media (max-width: 640px) {
+            .select {
+                display: block;
+                text-align: center;
+                margin: 30px auto 0;
+                width: fit-content;
+            }
+            .select:hover {
+                transform: translateX(10px);
+            }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                padding: 0;
+            }
+        }
+
+        /* Блок отзывов — отдельные карточки (переписано под услугу "Доставка алкоголя") */
+        .reviews-block {
+            background: rgba(253, 255, 247, 0.5);
+            padding: 25px;
+            border-radius: 20px;
+            width: 100%;
+            margin-top: 40px;
+            transition: all 0.3s;
+        }
+
+        .reviews-block:hover {
+            background: rgba(253, 255, 247, 0.75);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .reviews-title {
+            display: inline-block;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        @media (max-width: 640px) {
+            .reviews-block {
+                padding: 15px;
+            }
+            .reviews-title {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+        }
+
+        .review-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+            border-left: 5px solid #ffd700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .review-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .review-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .review-author {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-author::before {
+            content: "👤";
+            font-size: 1rem;
+        }
+
+        .review-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #3a3a3a;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .review-item {
+                padding: 12px 16px;
+                margin-bottom: 12px;
+            }
+            .review-author {
+                font-size: 0.95rem;
+            }
+            .review-text {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники🍾</p>
+        </div>
+        <div class="buttons">
+            <ul class="buttons_ul">
+                <a href="sale.html" class="cup">Товары</a>
+                <a href="titel.html" class="cup">Главная</a>
+                <a href="alco.html" class="cup">Побухать</a>
+                <a href="index.html" class="cup">О нас</a>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main class="content">
+            <a href="usl.html" class="back">← Назад</a>
+            <div class="info">
+                <div class="info-text">
+                    <h3>Доставка алкоголя 🚚</h3>
+                    <p>Данная услуга представляет собой заказ алкоголя и его доставку.<br><br>
+                    Вы звоните, оставляете заявку: что купить, в каком количестве и куда привести. Наш доставщик выезжает на машине, едет в магазин и закупает всё по списку. Оплата при получении.<br><br>
+                    <strong>Почему мы?</strong><br>
+                    - Доставщик трезвый и ответственный — сам ничего не выпьет<br>
+                    - Закупаем строго по вашему списку, без замен и лишнего<br>
+                    - Работаем с любыми магазинами (Пятёрочка, Магнит, Лента, METRO и др.)<br>
+                    - Привозим чеки — вы видите реальную цену<br>
+                    - Оплата только при получении, никакой предоплаты<br>
+                    - Быстро: от звонка до доставки — 40–60 минут<br><br>
+                    <strong>Дополнительные возможности:</strong><br>
+                    🍕 Можем докупить закуски, лёд, сок, лимонад<br>
+                    🚗 Доставка до дома, квартиры, дачи, офиса, лесополосы — в любое место<br>
+                    🕒 Работаем круглосуточно (в том числе ночью)<br>
+                    💰 Фиксированная цена за доставку (от 300 ₽)<br>
+                    </p>
+                </div>
+                <div class="photo">
+                    <img src="https://sun9-35.userapi.com/s/v1/ig2/Kvb6LTQcTSodS-7ZZoIQBg9zUStC0R5LYXJlloh9g8HJRwaOSAdeBZPDYVa1wz1U6yNqHDe1Zay9j1pXjlSJ_rDg.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=ny0YZQCtw9rpG4YDBnlGjFbjj8InFWhXm4bDMrvs1a4&cs=960x0" alt="Доставка алкоголя">
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <a href="price.html" class="select">Оформить заказ</a>
+            </div>
+
+            <!-- Блок отзывов — специально переписан под услугу "Доставка алкоголя" -->
+            <div class="reviews-block">
+                <h1 class="reviews-title">🍺 Отзывы о доставке алкоголя</h1>
+                
+                <div class="review-item">
+                    <div class="review-author">Игорь, 32 года</div>
+                    <p class="review-text">"Очень выручили! Вечером грянул день рождения, а в холодильнике пусто. Позвонил, продиктовал список — через 50 минут курьер уже был у двери с полным пакетом и чеком. Ничего не забыли, даже лёд положили. Оплатил при получении, без разводов. Теперь только к вам!"</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-author">Алина, 27 лет</div>
+                    <p class="review-text">"Устраивали посиделки за городом на даче. Свой алкоголь забыли, а ехать в магазин лень. Заказала доставку — курьер приехал прямо к калитке, купил всё строго по списку. Водка, вино, соки, закуски. Очень удобно, спасибо!"</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-author">Дмитрий, 29 лет</div>
+                    <p class="review-text">"Заказывал ночью, в 2 часа — нашёл сайт, думал не отвечают. А они работают 24/7! Приняли заказ, курьер через час привёз. Доставщик трезвый, вежливый. Цена фиксированная 350 рублей, плюс стоимость алкоголя по чеку. Честно и без накруток. Рекомендую!"</p>
+                </div>
+                
+                <div class="review-item">
+                    <div class="review-author">Светлана, 35 лет</div>
+                    <p class="review-text">"Первый раз воспользовалась доставкой алкоголя. Боялась, что навяжут лишнего или обманут с ценой. Но нет — прислали чек из Пятёрочки, всё прозрачно. Заказала шампанское, фрукты и сок. Доставили быстро, курьер приятный. Обязательно обращусь ещё!"</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-author">Константин, 41 год</div>
+                    <p class="review-text">"Работаю таксистом, иногда после смены хочется расслабиться, но ехать в магазин сил нет. Заказал через них — прислали курьера с коньяком и лимоном. Дешевле, чем через доставку из ресторана. Спасибо за оперативность!"</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-author">Евгений, 23 года</div>
+                    <p class="review-text">"Студенческая вечеринка едва не сорвалась — все магазины закрыты, а алкоголя нет. Нашёл этот сервис, позвонил. Курьер приехал даже ночью! Привёз пиво, чипсы, закуски. Отдельное спасибо за чек — цена адекватная. Будем заказывать постоянно."</p>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

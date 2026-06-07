@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Собутыльники — Услуги</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to bottom right, rgb(0, 0, 0), rgb(89, 152, 1));
+            min-height: 100vh;
+        }
+
+        /* ШАПКА — АДАПТИВ */
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .head_ {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 20px;
+            }
+            .buttons {
+                justify-content: center;
+                width: 100%;
+            }
+            .buttons_ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .cup {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0;
+            }
+        }
+
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+
+        @media (max-width: 640px) {
+            .namesite {
+                font-size: 1.5rem;
+            }
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 20px;
+            }
+        }
+
+        .content-race {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .content-race {
+                padding: 20px;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .cup {
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            transition: all 0.6s;
+        }
+
+        @media (max-width: 640px) {
+            .cup {
+                font-size: 14px;
+                margin: 5px;
+                padding: 6px 10px;
+            }
+        }
+
+        .cup:hover {
+            transform: scale(1.1);
+            background: rgb(89, 152, 1);
+            color: white;
+        }
+
+        .buttons_ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .cards-usl {
+            width: calc(50% - 15px);
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(2px);
+            transition: all 0.3s;
+        }
+
+        .cards-usl:hover {
+            transform: scale(1.01);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .cards-usl {
+                width: 100%;
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .name-card {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.2rem;
+            color: rgb(255, 255, 255);
+            flex: 1;
+        }
+
+        .name-card h3 {
+            color: #ffd966;
+            margin-bottom: 10px;
+        }
+
+        .img-card {
+            flex: 0 0 250px;
+            max-width: 250px;
+        }
+
+        .img-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .img-card {
+                flex: auto;
+                max-width: 80%;
+                margin-top: 15px;
+            }
+        }
+
+        .menu {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            margin: 0;
+            padding: 30px 20px 10px 20px;
+            color: #cfcfcf;
+            font-size: 40px;
+        }
+
+        @media (max-width: 640px) {
+            .menu {
+                font-size: 28px;
+                text-align: center;
+                padding: 20px 15px 10px 15px;
+            }
+        }
+
+        .cards-race {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            background: rgba(162, 140, 140, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(2px);
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 768px) {
+            .cards-race {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+        .info-race {
+            flex: 1;
+            color: white;
+            font-size: 1.3rem;
+            line-height: 1.5;
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .info-race {
+                font-size: 1rem;
+                padding: 10px;
+            }
+        }
+
+        .info-race h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ffd966;
+        }
+
+        @media (max-width: 768px) {
+            .info-race h3 {
+                font-size: 1.4rem;
+            }
+        }
+
+        .img-race {
+            flex: 0 0 250px;
+            max-width: 250px;
+        }
+
+        .img-race img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            background-color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .img-race {
+                flex: auto;
+                max-width: 80%;
+            }
+        }
+
+        .img-race-gallery {
+            flex: 0 0 200px;
+            max-width: 200px;
+        }
+
+        @media (max-width: 768px) {
+            .img-race-gallery {
+                flex: 0 0 calc(50% - 20px);
+                max-width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .img-race-gallery {
+                flex: 0 0 100%;
+                max-width: 100%;
+            }
+        }
+
+        .img-race-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            display: block;
+            background-color: #ccc;
+        }
+
+        .use {
+            display: inline-block;
+            color: rgb(0, 0, 0);
+            padding: 10px 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            transition: all 0.3s;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        .use:hover {
+            transform: scale(1.05);
+            color: white;
+            background: rgb(89, 152, 1);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                padding: 0;
+            }
+        }
+
+        /* Галерея изображений — сетка */
+        .cards-race:last-of-type {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники🍾</p>
+        </div>
+        <div class="buttons">
+            <ul class="buttons_ul">
+                <a href="titel.html" class="cup">Главная</a>
+                <a href="sale.html" class="cup">Товары</a>
+                <a href="alco.html" class="cup">Побухать</a>
+                <a href="index.html" class="cup">О нас</a>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main class="content">
+            <p class="menu">Авто-услуги</p>
+            <div class="cards">
+                <div class="cards-usl">
+                    <div class="name-card">
+                        <h3>Трезвый водила</h3>
+                        <p>Данная услуга предоставляет вам водителя который довезет вас из точки А в точку Б.<br>Казалось бы обычное такси, но, в нашем такси вам предоставляется мини-бар, автомобильный кальян,<br>и по желанию прокат по ночному городу под громкую музыку.</p>
+                        <br>
+                        <p><strong>Автомобили:</strong><br> - Hyundai Accent<br> - Lada Niva Legend<br> - Chevrolet Niva</p>
+                        <br>
+                        <a href="usl-trv.html" class="use">Оформить</a>
+                    </div>
+                    <div class="img-card">
+                        <img src="https://sun9-14.userapi.com/s/v1/ig2/_A2l8_GqBaaTnSEqOpV0vrqZaHu2RhCFtIuSBqK6ybzIPTLQkJ46oZunT0LGvdbJVnaxDCTYDjN-eoGwb3w0MvYD.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=tq0sUjcUjfOyfzVoRUMpXtJ3JfhRErsSMqyx2KlO_jE&cs=960x0" alt="Трезвый водитель">
+                    </div>
+                </div>
+                <div class="cards-usl">
+                    <div class="name-card">
+                        <h3>Доставка алкоголя из магазинов</h3>
+                        <p>Данная услуга представляет собой заказ алкоголя и его доставку.<br>
+                        Вы звоните оставляете заявку что купить, в каком количестве и куда привести. Наш доставщик выезжает на машине едет в магазин, и закупает все по списку. Оплата при получении.</p>
+                        <br>
+                        <p><strong>Автомобили:</strong><br> - Hyundai Accent<br> - Lada Niva Legend<br> - Chevrolet Niva</p>
+                        <br>
+                        <a href="usl-alco.html" class="use">Оформить</a>
+                    </div>
+                    <div class="img-card">
+                        <img src="https://sun9-9.userapi.com/s/v1/ig2/PF6IKJTEnLnpMC06ra-2M6SKupMkUF-VWrFHdKw8baKu8U4N8plYIpIt6HG6cIjtgul-p9fykcKxU-Oru8F24rIX.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&u=pwFwkdoyvZQ9sp5QhIbgPHHYUcBSn3eAMqwyPU-b9S4&cs=2560x0" alt="Доставка алкоголя">
+                    </div>
+                </div>
+                <div class="cards-usl">
+                    <div class="name-card">
+                        <h3>Offroad-услуги</h3>
+                        <p>Данная услуга представляет собой спасение вашей машины из сугроба, грязи, песка и пр.</p>
+                        <br>
+                        <p><strong>Автомобили:</strong><br> - Lada Niva Legend<br> - Chevrolet Niva</p>
+                        <br><br>
+                        <a href="usl-offroad.html" class="use">Оформить</a>
+                    </div>
+                    <div class="img-card">
+                        <img src="https://sun9-3.userapi.com/s/v1/ig2/Y3g2HhrdiS5t0GavsfxfryXpk-Uskrjn94qpYu8vBOaFgOQUDdhMdJJbo8C66cmsF_pz9r8s9X5mnvcx1a5LpyVT.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=NuzFmLxtVBIhUoz5E4FOy0V9UZFMiBhnbBRPDwb9vMY&cs=960x0" alt="Offroad услуги">
+                    </div>
+                </div>
+            </div>
+        </main>
+        <main class="content-race">
+            <p class="menu">Самая интересная услуга</p>
+            <div class="cards-race">
+                <div class="info-race">
+                    <h3>Погонять конвоем</h3>
+                    <p>Так как мы лютые любители погонять, для вас действует услуга погонять с нами конвоем, это лучший способ ближе познакомиться с нами, выпить энергосиков, покурить, пострадать хуйней. Послушать музыку, посетить красивые места, зимой можно подрифтить. Можно по прямой выяснить кто же тот самый Вин-Дизель.<br>
+                    Для этой услуги не обязательно чтобы у вас была машина, главное чтобы было место в наших).</p>
+                    <br>
+                    <a href="konv.html" class="use">Оформить</a>
+                </div>
+                <div class="img-race">
+                    <img src="https://sun9-17.userapi.com/s/v1/ig2/SmF-aZq4VYqHd3TONuFDrs4n0jakJMkTmCOtprSHzmZa2jMgJzJUlmqddizodOrQtd_zh2bMTN8HkWtwPaP0Bliu.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440,1280x1707,1440x1920,1920x2560&from=bu&u=p7IIqb5c1tR6-VlMJTy2u4mQqupFMrOWftJnvfTcpHs&cs=1920x0" alt="Погонять конвоем">
+                </div>
+            </div>
+            <p class="menu">Галерея услуги "Погонять конвоем"</p>
+            <div class="cards-race" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                <div class="img-race-gallery">
+                    <img src="https://sun9-22.userapi.com/s/v1/ig2/EydyNf6ZFEqP-0skiXj0jXYyKnd5vDG2p2Q80T860FpjNd29vjNiRMlt1txx6mHPfpgbiMHQc4thnyk4oPb2b5Ku.jpg?quality=95&as=32x24,48x36,72x54,108x81,160x120,240x180,360x270,480x360,540x405,640x480,720x540,1080x810,1280x960,1440x1080,2560x1920&from=bu&u=xOMemAv31HZPgc7cPNs78ftcpNlTUsQt569onCNzyCc&cs=1280x0" alt="Галерея 1">
+                </div>
+                <div class="img-race-gallery">
+                    <img src="https://sun105-2.userapi.com/s/v1/ig2/whuR88ptNMomtlsP3YduWuJwzlDywKZ_sB7euolMHf2RZ2u8sY0Kc-3jKMhSjCg2mE-Jwqcd3aqpcVziNwZjsStM.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0" alt="Галерея 2">
+                </div>
+                <div class="img-race-gallery">
+                    <img src="https://sun9-54.userapi.com/s/v1/ig2/Ak-7_sUPPulKuvl7fjDp9UD347VNWhWSL6MTXe7OHjHsaJMhNjpXGFF_phHUI_qsy9F6Y9a_rF-fNaDqWAGVC-ji.jpg?quality=95&as=32x42,48x64,72x96,108x143,160x212,240x318,360x478,480x637,540x716,640x849,720x955,1080x1433&from=bu&cs=1080x0" alt="Галерея 3">
+                </div>
+                <div class="img-race-gallery">
+                    <img src="https://sun9-29.userapi.com/s/v1/ig2/8hbBhumYpjxxwgf85PblOfSCV7nQq_mRHedSozNA0L0_WpWN8cNf6S3Xu7ttknPlz2NWMJQqqgeGzluea9THHuyI.jpg?quality=95&as=32x45,48x67,72x101,108x151,160x224,240x336,360x503,480x671,540x755,640x895,720x1007,1080x1510&from=bu&u=qlq9mXWIYQXZBGUxPZce2le8jMyakE2Zls40P8gJn8Y&cs=1080x0" alt="Галерея 4">
+                </div>
+                <div class="img-race-gallery">
+                    <img src="https://sun9-14.userapi.com/s/v1/ig2/bIzqclhgLImciAiODuJxHRn55tSPj5xHKYtyUTCHSoQlnsXSQfsuK9rPtDw4fX2FMI0nvN5u0XftS0xLhJAPhdPi.jpg?quality=95&as=32x38,48x57,72x86,108x129,160x191,240x286,360x430,480x573,540x644,640x764,720x859,1080x1289&from=bu&u=XTo38TW3htpc6hvt_SDBNu0BUk6DnnGuG4P9WPJ9IzQ&cs=1080x0" alt="Галерея 5">
+                </div>
+                <div class="img-race-gallery">
+                    <img src="https://sun105-1.userapi.com/s/v1/ig2/CqjirMO7RiEYmQBXhVDY_c6gJ54xqgdhBlXnUlMelETp0r5FYuOsAS212YOfp55wb7K8aNFyaeXrj8hKQ74rqQyN.jpg?quality=95&as=32x69,48x104,72x156,108x234,160x347,240x520,360x780,480x1040,540x1170,640x1387,720x1560,1080x2340&from=bu&cs=1080x0" alt="Галерея 6">
+                </div>
+                <div class="img-race-gallery">
+                    <img src="https://sun9-41.userapi.com/s/v1/ig2/kOP4DmtnpyyzIrLWwv1BsecU5Sb5TaGpcuz5dikV-mDaNznV6EKGQQ0Xk0Q0eV89O3iEytcO3NxoXZhSVOJs8SJK.jpg?quality=95&as=32x69,48x104,72x156,108x234,160x347,240x520,360x780,480x1040,540x1170,640x1387,720x1560,1080x2340&from=bu&cs=1080x0" alt="Галерея 7">
+                </div>
+                <div class="img-race-gallery">
+                    <img src="https://sun9-26.userapi.com/s/v1/ig2/ALwbvT38r80C70qX6g-QIWpsQu7aKIjq4VlN8fcWjcp8sWjQLUyetatOAGLDVfUWvl63r5ZR8x_RX786xtYmgFJH.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&cs=960x0" alt="Галерея 8">
+                </div>
+                <div class="img-race-gallery">
+                    <img src="https://sun9-39.userapi.com/s/v1/ig2/N9Yu4ZaCnSxOEY6-uZqctr3atHdCDgC8TXaXk7aDIM623ZbsssuTCi79QGGmKypke8m2fCoG1OLoA_tluTLiEeaC.jpg?quality=95&as=32x39,48x59,72x88,108x132,160x196,240x294,360x440,480x587,540x660,640x783,720x881,1080x1321&from=bu&u=32oCiqnWaTsK3_AlVYB1exRj9JFIrI0-2x3ihGmhQIQ&cs=1080x0" alt="Галерея 9">
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

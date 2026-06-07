@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Собутыльники🍾 — Идеальная компания для вечера</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(225, 225, 105));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding-bottom: 50px;
+        }
+
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .cup {
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            transition: all 0.6s;
+        }
+
+        .cup:hover {
+            transform: scale(1.1);
+            background: yellow;
+            color: #000000;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .buttons_ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Универсальные блоки */
+        .content-card {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 20px 24px;
+            background: rgba(159, 172, 188, 0.5);
+            width: 80%;
+            margin-top: 40px;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            backdrop-filter: blur(1px);
+        }
+
+        .image-row {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 20px;
+            background: rgba(159, 172, 188, 0.5);
+            width: 80%;
+            margin-top: 40px;
+            border-radius: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image-row img {
+            width: 30%;
+            height: auto;
+            aspect-ratio: 4 / 3;
+            object-fit: cover;
+            border-radius: 16px;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .image-row img:hover {
+            transform: scale(1.02);
+        }
+
+        /* ========== ВИДЕОБЛОК — НОРМАЛЬНАЯ ШИРИНА, КОМПАКТНАЯ ВЫСОТА ========== */
+        .video-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            background: rgba(0,0,0,0.05);
+            border-radius: 28px;
+            padding: 12px;
+        }
+
+        .responsive-video {
+            width: 100%;
+            max-width: 680px;
+            height: auto;
+            max-height: 360px;
+            border-radius: 20px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+            background: #000;
+            display: block;
+            object-fit: contain;
+        }
+
+        /* На широких экранах видео чуть шире, но не гигантское */
+        @media (min-width: 1200px) {
+            .responsive-video {
+                max-width: 720px;
+                max-height: 380px;
+            }
+        }
+
+        /* Планшеты — уменьшаем аккуратно */
+        @media (max-width: 992px) {
+            .responsive-video {
+                max-width: 560px;
+                max-height: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .responsive-video {
+                max-width: 500px;
+                max-height: 280px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .responsive-video {
+                max-width: 420px;
+                max-height: 240px;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .responsive-video {
+                max-width: 340px;
+                max-height: 200px;
+            }
+        }
+
+        .text-limiter {
+            max-width: 85%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            margin-top: 12px;
+        }
+
+        /* ========== АДАПТИВ ========== */
+        @media (max-width: 992px) {
+            .content-card, .image-row, .video-wrapper {
+                width: 90% !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .head_ {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                padding: 16px 20px;
+                gap: 12px;
+            }
+            .buttons_ul {
+                flex-direction: column;
+                gap: 8px;
+                align-items: center;
+                width: 100%;
+            }
+            .cup {
+                width: 80%;
+                margin: 4px auto;
+                text-align: center;
+            }
+
+            .content-card {
+                width: 95% !important;
+                padding: 16px 18px !important;
+                margin-top: 24px !important;
+            }
+
+            .content-card h1 {
+                font-size: 2rem !important;
+            }
+
+            .content-card p {
+                font-size: 1rem !important;
+                line-height: 1.6 !important;
+            }
+
+            .image-row {
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 18px !important;
+                width: 95% !important;
+                padding: 20px 15px !important;
+            }
+
+            .image-row img {
+                width: 90% !important;
+                max-width: 340px;
+                height: auto;
+                aspect-ratio: 4 / 3;
+                object-fit: cover;
+            }
+
+            .video-wrapper {
+                width: 95% !important;
+                padding: 8px;
+            }
+
+            .text-limiter {
+                max-width: 100% !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .namesite {
+                font-size: 1.5rem;
+            }
+
+            .content-card h1 {
+                font-size: 1.6rem !important;
+            }
+
+            .content-card p {
+                font-size: 0.9rem !important;
+                line-height: 1.5 !important;
+            }
+
+            .cup {
+                font-size: 16px;
+                padding: 8px 16px;
+            }
+
+            .image-row img {
+                width: 95% !important;
+                border-radius: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники🍾</p>
+        </div>
+        <div class="buttons">
+            <ul class="buttons_ul">
+                <a href="index.html" class="cup">О нас</a>
+                <a href="sale.html" class="cup">Товары</a>
+                <a href="alco.html" class="cup">Побухать</a>
+                <a href="usl.html" class="cup">Услуги</a>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Первый блок: приветствие -->
+    <div class="content-card">
+        <h1 style="margin-top: 8px; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 2.7rem; color: rgb(59, 59, 59); text-align: center;">🍾 Приветствуем!</h1>
+        <div class="text-limiter">
+            <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 1.2rem; color: rgb(59, 59, 59); line-height: 200%;">
+                Приветствуем на сайте - страничке - магазине "Собутыльники"! На этом сайте вы найдете информацию о каждом собутыльнике, посмотрите каталог товаров и услуг, а также сможете подобрать идеального компаньона для вечеринки, посиделок или спокойного вечера. Мы собрали для вас подробные анкеты с описанием характера, интересов, предпочтений в напитках и закусках, а также уровня общительности каждого собутыльника. Вы легко сможете выбрать того, кто подойдет именно под ваше настроение и формат мероприятия.
+
+                У нас вы можете заказать напитки, закуски, а также услуги профессиональных собутыльников с опытом. В нашем ассортименте представлены различные алкогольные и безалкогольные напитки на любой вкус и бюджет, а также свежие закуски, горячие блюда и десерты. Профессиональные собутыльники не только поддержат любую беседу, но и помогут создать непринужденную атмосферу, предложат интересные игры и тосты, а также следят за тем, чтобы вечер прошел комфортно и безопасно для всех участников.
+            </p>
+        </div>
+    </div>
+
+    <!-- Первый ряд фото -->
+    <div class="image-row">
+        <img src="выпуск.jpg" alt="Веселый выпуск" loading="lazy">
+        <img src="https://sun9-85.userapi.com/s/v1/ig2/hMmAvf9cmFrJsoEFC5hV5phSi8ahsS86tbJblFDPN8vg8r8fcIZrGTiHeS2wMMFwj0x1pjp0usENfc33jhSdKERe.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440&from=bu&u=WhL5JKPKXX5kyjIxTjJzaYZixbGJhvEZNgRY-AMN2os&cs=1080x0" alt="Егор и рак" loading="lazy">
+        <img src="запасное.jpg" alt="Запасное фото" loading="lazy">
+    </div>
+
+    <!-- Второй текстовый блок -->
+    <div class="content-card">
+        <div class="text-limiter">
+            <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 1.2rem; color: rgb(59, 59, 59); line-height: 200%;">
+                Будем рады видеть от вас отзывы и активность на сайте! Ваше мнение очень важно для нас, так как помогает становиться лучше и учитывать пожелания наших гостей. Вы можете оценить качество услуг, оставить комментарий о понравившемся собутыльнике или поделиться впечатлениями от заказа. Также вы сможете читать отзывы других пользователей, чтобы сделать правильный выбор.
+
+                Присоединяйтесь к нашему сообществу, участвуйте в розыгрышах и акциях. Регулярно мы проводим конкурсы с приятными призами, скидками и бесплатными услугами. Подписывайтесь на наши обновления, чтобы первыми узнавать о новых поступлениях в каталог, появлении новых собутыльников и специальных предложениях. Чем активнее вы участвуете в жизни сайта, тем больше привилегий и бонусов получаете.
+            </p>
+        </div>
+    </div>
+
+    <!-- Второй ряд фото -->
+    <div class="image-row">
+        <img src="кристина.jpg" alt="Макс и я на роднике" loading="lazy">
+        <img src="макс с цветами.jpg" alt="Макс с цветами" loading="lazy">
+        <img src="род.jpg" alt="Родниковая встреча" loading="lazy">
+    </div>
+
+    <!-- Третий текстовый блок -->
+    <div class="content-card">
+        <div class="text-limiter">
+            <p style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 1.2rem; color: rgb(59, 59, 59); line-height: 200%;">
+                Ваш отдых — наша забота. Мы стремимся сделать каждый ваш вечер незабываемым, наполненным приятным общением, хорошим настроением и качественным сервисом. Доверьте организацию досуга профессионалам, а сами просто наслаждайтесь временем в хорошей компании.
+            </p>
+        </div>
+    </div>
+
+    <div class="image-row">
+        <img src="https://sun9-3.userapi.com/s/v1/ig2/PDDxGwHsqH58jGVccSziNjZLs9j_HtJTDFiBi0MUfXFVKA3vqIsfMP3XEXyr0x5F7wXFfBJx8ZUt0XPAo7HPaYgI.jpg?quality=95&as=32x21,48x32,72x48,108x72,160x107,240x160,360x240,480x320,540x360,640x426,720x480,1080x720,1280x853,1440x960,2560x1706&from=bu&cs=2560x0" alt="Макс и я на роднике" loading="lazy">
+        <img src="https://sun9-40.userapi.com/s/v1/ig2/CUmSTP-44N8sgY2OmnxLPDtCu-XTz6L5E0mMa9Ul3Rb-Mk6qlrdzEuUhxaYbghSCiCSeQbuC3qWXoXtjZPdNn323.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,1080x1440&from=bu&u=tnLMof8XbYqIjTykht2rEGZ3Cv3YDt4EC4duNFBo4Gs&cs=1080x0" alt="Макс с цветами" loading="lazy">
+        <img src="https://sun9-13.userapi.com/s/v1/ig2/V5SV85Lx_UjUVX_OAlMpI1ZjPbFZGwfLH-mIT_K-w0smbAOwTNtRAtZwWjE0qYIJSXOyH_4tAjd5k4pafsX8IYyz.jpg?quality=95&as=32x43,48x64,72x96,108x144,160x213,240x320,360x480,480x640,540x720,640x853,720x960,960x1280&from=bu&u=LXyXSVXMJidR-HgZEkDACR3JRzoap3JoEKlAnsfz88o&cs=960x0" alt="Родниковая встреча" loading="lazy">
+    </div>
+
+    
+
+    <!-- ВИДЕО — оптимальная ширина, приятная высота, ничего не обрезается -->
+    <div class="video-wrapper">
+        <video class="responsive-video" controls preload="metadata" poster="">
+            <source src="собутыльники видео сайт 1.mp4" type="video/mp4">
+            Ваш браузер не поддерживает видео. Попробуйте обновить браузер.
+        </video>
+    </div>
+
+    <!-- Футер -->
+    <div style="text-align: center; margin-top: 30px; margin-bottom: 20px; font-size: 0.9rem; color: #2c2c2c; font-family: monospace; opacity: 0.8;">
+        🍻 Собутыльники — всегда хорошая компания! 🥂
+    </div>
+</body>
+</html>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Собутыльники — Выпить коньяка</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Анимации для внутренних объектов */
+        @keyframes floatGlow {
+            0% {
+                transform: translateY(0px);
+                text-shadow: 0 0 0 rgba(255, 215, 0, 0);
+            }
+            50% {
+                transform: translateY(-6px);
+                text-shadow: 0 0 12px rgba(255, 215, 0, 0.7);
+            }
+            100% {
+                transform: translateY(0px);
+                text-shadow: 0 0 0 rgba(255, 215, 0, 0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-60px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeScaleUp {
+            0% {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulseBg {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes imagePop {
+            0% {
+                opacity: 0;
+                transform: scale(0.85);
+            }
+            60% {
+                transform: scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes softBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+
+        body {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(to bottom right, rgb(6, 41, 17), rgb(139, 132, 0));
+            animation: pulseBg 12s ease infinite;
+            background-size: 200% 200%;
+            overflow-x: hidden;
+        }
+
+        /* ШАПКА */
+        .head_ {
+            background-color: black;
+            padding: 20px 40px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .head_ {
+                flex-direction: column;
+                text-align: center;
+                padding: 15px 20px;
+            }
+            .buttons {
+                justify-content: center;
+                width: 100%;
+            }
+            .buttons_ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            .cup {
+                width: 100%;
+                text-align: center;
+                margin: 5px 0;
+            }
+        }
+
+        .namesite {
+            font-size: 2rem;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+        }
+
+        @media (max-width: 640px) {
+            .namesite {
+                font-size: 1.5rem;
+            }
+        }
+
+        .content {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 640px) {
+            .content {
+                padding: 20px;
+            }
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            flex-wrap: wrap;
+        }
+
+        .cup {
+            display: inline-block;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color: #ffffff;
+            font-size: 20px;
+            list-style: none;
+            margin: 10px;
+            cursor: pointer;
+            background: black;
+            padding: 10px 10px;
+            border-radius: 20px;
+            transition: all 0.6s;
+        }
+
+        @media (max-width: 640px) {
+            .cup {
+                font-size: 14px;
+                margin: 5px;
+                padding: 6px 10px;
+            }
+        }
+
+        .cup:hover {
+            transform: scale(1.1);
+            background: rgb(34, 39, 69);
+            color: white;
+        }
+
+        .buttons_ul {
+            display: flex;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Анимация для пунктов меню */
+        .buttons_ul a {
+            animation: fadeScaleUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+            opacity: 0;
+            transform: scale(0.92);
+        }
+
+        .buttons_ul a:nth-child(1) { animation-delay: 0.1s; }
+        .buttons_ul a:nth-child(2) { animation-delay: 0.2s; }
+        .buttons_ul a:nth-child(3) { animation-delay: 0.3s; }
+        .buttons_ul a:nth-child(4) { animation-delay: 0.4s; }
+
+        /* Кнопка НАЗАД */
+        .back {
+            display: inline-block;
+            color: black;
+            background-color: #ccc;
+            border-radius: 20px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.4s;
+            animation: slideInLeft 0.5s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-60px);
+            margin-bottom: 20px;
+        }
+
+        .back:hover {
+            transform: translateX(40px);
+            background: red;
+            color: white;
+        }
+
+        @media (max-width: 640px) {
+            .back:hover {
+                transform: translateX(20px);
+            }
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .info {
+            display: flex;
+            color: #ffffff;
+            margin-top: 2%;
+            align-items: center;
+            text-align: center;
+            justify-content: space-around;
+            flex-direction: column;
+            width: 100%;
+        }
+
+        /* РЯД С ФОТО */
+        .image-row {
+            display: flex;
+            justify-content: center;
+            margin-top: 3.5%;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+
+        .image-row img {
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            animation: imagePop 0.7s cubic-bezier(0.2, 0.8, 0.4, 1.1) forwards;
+            opacity: 0;
+        }
+
+        .image-row img:nth-child(1) { 
+            width: 25%; 
+            animation-delay: 0.1s;
+        }
+        .image-row img:nth-child(2) { 
+            width: 40%; 
+            animation-delay: 0.3s;
+        }
+        .image-row img:nth-child(3) { 
+            width: 25%; 
+            animation-delay: 0.5s;
+        }
+
+        .image-row img:hover {
+            transform: scale(1.02) rotate(1deg);
+            filter: brightness(1.05);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .image-row {
+                gap: 15px;
+                margin-top: 20px;
+            }
+            .image-row img:nth-child(1),
+            .image-row img:nth-child(3) {
+                width: 42%;
+            }
+            .image-row img:nth-child(2) {
+                width: 80%;
+                order: -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-row img:nth-child(1),
+            .image-row img:nth-child(3) {
+                width: 90%;
+            }
+            .image-row img:nth-child(2) {
+                width: 95%;
+            }
+        }
+
+        /* Блок с описанием услуги */
+        .service-description {
+            margin-top: 1.9%;
+            background: rgba(86, 86, 86, 0.5);
+            padding: 20px;
+            border-top-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            text-align: left;
+            animation: fadeInUp 0.8s forwards;
+            opacity: 0;
+            animation-delay: 0.4s;
+            transition: all 0.3s;
+            backdrop-filter: blur(2px);
+            width: 100%;
+        }
+
+        .service-description p {
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: clamp(0.9rem, 4vw, 1.2rem);
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+
+        .service-description strong {
+            color: #ffd966;
+        }
+
+        .service-description:hover {
+            background: rgba(86, 86, 86, 0.7);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Кнопка ЗАКАЗАТЬ */
+        .order-btn {
+            background: #323232;
+            padding: 12px 25px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: clamp(1rem, 4.5vw, 1.3rem);
+            color: yellowgreen;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: inline-block;
+            animation: floatGlow 2.5s infinite ease-in-out, fadeScaleUp 0.6s forwards;
+            opacity: 0;
+            transform: scale(0.92);
+            animation-delay: 0s, 0.6s;
+            margin-top: 25px;
+            text-align: center;
+            border: none;
+            font-weight: bold;
+        }
+
+        .order-btn:hover {
+            transform: scale(1.05);
+            background: #4a4a4a;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            color: #aaff33;
+        }
+
+        /* БЛОК ОТЗЫВОВ — ОТДЕЛЬНЫЕ КАРТОЧКИ */
+        .reviews-block {
+            background: rgba(253, 255, 247, 0.5);
+            padding: 25px;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 100%;
+            animation: slideInLeft 0.7s forwards;
+            opacity: 0;
+            transform: translateX(-60px);
+            animation-delay: 0.8s;
+            transition: all 0.3s;
+            margin-top: 40px;
+        }
+
+        .reviews-block:hover {
+            background: rgba(253, 255, 247, 0.75);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .reviews-title {
+            animation: softBounce 2s infinite ease;
+            display: inline-block;
+            font-size: clamp(1.3rem, 5vw, 1.8rem);
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .review-item {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 16px;
+            padding: 18px 22px;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+            border-left: 5px solid #ffd700;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .review-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .review-item:hover {
+            transform: translateX(5px);
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .review-author {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .review-author::before {
+            content: "👤";
+            font-size: 1rem;
+        }
+
+        .review-text {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #3a3a3a;
+            margin: 0;
+        }
+
+        @media (max-width: 640px) {
+            .reviews-block {
+                padding: 15px;
+            }
+            .review-item {
+                padding: 12px 16px;
+                margin-bottom: 12px;
+            }
+            .review-author {
+                font-size: 0.95rem;
+            }
+            .review-text {
+                font-size: 0.85rem;
+            }
+            .reviews-title {
+                margin-bottom: 15px;
+            }
+        }
+
+        .reviews-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 30px;
+            width: 100%;
+            padding: 0 10px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        @media (min-width: 1400px) {
+            .container {
+                padding: 0;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .service-description {
+                padding: 15px;
+            }
+        }
+
+        .cup, .back, .order-btn {
+            will-change: transform;
+        }
+
+        .cognac-btn {
+            background: #8B0000;
+            color: #FFD700;
+            padding: 15px 30px;
+            border-radius: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: inline-block;
+            font-weight: bold;
+            border: none;
+        }
+
+        .cognac-btn:hover {
+            transform: scale(1.05);
+            background: #a00000;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 640px) {
+            .cognac-btn {
+                font-size: 1.1rem;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="head_">
+        <div class="logo">
+            <p class="namesite">Собутыльники 🍾</p>
+        </div>
+        <div class="buttons">
+            <ul class="buttons_ul">
+                <a href="titel.html" class="cup">Главная</a>
+                <a href="index.html" class="cup">О нас</a>
+                <a href="alco.html" class="cup">Побухать</a>
+                <a href="usl.html" class="cup">Услуги</a>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        <main class="content">
+            <a href="alco.html" class="back">← Назад</a>
+            <div class="info">
+                <div>
+                    <a class="cognac-btn" href="price.html">Выпить коньяка! 🥃</a>
+                </div>
+                <div class="image-row">
+                    <img src="https://s2.wine.style/images_gen/266/266926/0_0_orig.webp" alt="Коньяк левое">
+                    <img src="https://main-cdn.sbermegamarket.ru/mid9/hlr-system/686/283/196/121/522/5/100063260729b0.jpg" alt="Коньяк центральное">
+                    <img src="https://cdn.metro-cc.ru/ru/ru_pim_308653001001_01.png" alt="Коньяк правое">
+                </div>
+                <div class="service-description">  
+                    <p>
+                        <strong>🥃 Выпить коньяка</strong><br><br>
+                        Данная услуга представляет собой организацию неплохой, длительной посиделки под коньячок.<br>
+                        Вы звоните, оставляете заявку. <br> 
+                        Наш водитель закупает бутылку отличного коньяка, неплохую закуску, в основном рыба и мясо. Привозит в указанное место и (по желанию) составляет компанию на первых минутах. Оплата при получении.<br><br>
+                        <strong>Почему мы?</strong><br>
+                        • Водитель трезвый и ответственный — сам не пьёт за рулём, доставит всё в целости<br>
+                        • Закупаем строго по вашему запросу, без замен и лишнего<br>
+                        • Работаем с любыми магазинами (Пятёрочка, Магнит, Лента, METRO и др.)<br>
+                        • Привозим чеки — вы видите реальную цену<br>
+                        • Оплата только при получении, никакой предоплаты<br>
+                        • Быстро: от звонка до доставки — 30–50 минут<br><br>
+                        <strong>Дополнительные возможности:</strong><br>
+                        🐟 Закуска: Мясо, рыба, сыры, колбасы (если чек на мясо и рыбу превысил стоимость услуги, нужно будет доплатить)<br>
+                        🚬 По обговорённости — 2 пачки сигарет (любые, на ваш выбор)<br>
+                        🏢 Доставка до любого места: остановка, подъезд (падик), лавочка во дворе, гараж, беседка<br>
+                        🕒 Работаем круглосуточно (в том числе ночью)<br>
+                        💰 Фиксированная цена за набор (от 14.500 ₽)<br>
+                    </p>
+                </div>
+            </div>
+            <div class="reviews-wrapper">
+                <div class="reviews-block">
+                    <h1 class="reviews-title">🍻 Отзывы</h1>
+                    
+                    <div class="review-item">
+                        <div class="review-author">Максим К.</div>
+                        <p class="review-text">"Заказал услугу впервые — доставили быстро, ребята веселые, атмосфера отличная! Особенно порадовала гибкая система скидок. Теперь буду заказывать регулярно."</p>
+                    </div>
+                    
+                    <div class="review-item">
+                        <div class="review-author">Анна С.</div>
+                        <p class="review-text">"Решила устроить вечер с друзьями, но никто не смог прийти. Заказала компанию вместе с напитками — теперь это мой лайфхак для хорошего настроения! Провизию тоже привезли, спасибо за внимание к деталям."</p>
+                    </div>
+                    
+                    <div class="review-item">
+                        <div class="review-author">Дмитрий Р.</div>
+                        <p class="review-text">"Сервис на высоте! Ребята пришли вовремя, создали уютную атмосферу. Очень удобно, что можно заказать еду отдельно — сэкономило кучу времени. Рекомендую друзьям!"</p>
+                    </div>
+                    
+                    <div class="review-item">
+                        <div class="review-author">Елена Н.</div>
+                        <p class="review-text">"Впервые воспользовалась услугой и осталась довольна! Все прошло отлично: доставка быстрая, компания дружелюбная, скидки приятные. Обязательно закажу снова, особенно с учетом акции на второй заказ."</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

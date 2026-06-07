@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Собутыльники - Покупка</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; background: linear-gradient(to bottom right, rgb(255, 255, 255), rgb(225, 225, 105)); min-height: 100vh;">
+
+<!-- Шапка -->
+<header style="background-color: black; padding: 20px 40px; width: 100%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; box-sizing: border-box;">
+    <div class="logo">
+        <p style="font-size: 2rem; font-weight: bold; color: rgb(255, 255, 255); margin: 0;">Собутыльники🍾</p>
+    </div>
+    <div class="buttons">
+        <ul style="display: flex; gap: 20px; list-style: none; margin: 0; padding: 0; flex-wrap: wrap;">
+            <a href="sale.html" style="display: inline-block; color: #ffffff; font-size: 20px; cursor: pointer; background: black; padding: 10px 20px; border-radius: 20px; transition: all 0.6s; text-decoration: none;">Товары</a>
+            <a href="titel.html" style="display: inline-block; color: #ffffff; font-size: 20px; cursor: pointer; background: black; padding: 10px 20px; border-radius: 20px; transition: all 0.6s; text-decoration: none;">Главная</a>
+            <a href="alco.html" style="display: inline-block; color: #ffffff; font-size: 20px; cursor: pointer; background: black; padding: 10px 20px; border-radius: 20px; transition: all 0.6s; text-decoration: none;">Побухать</a>
+            <a href="usl.html" style="display: inline-block; color: #ffffff; font-size: 20px; cursor: pointer; background: black; padding: 10px 20px; border-radius: 20px; transition: all 0.6s; text-decoration: none;">Услуги</a>
+        </ul>
+    </div>
+</header>
+
+<!-- Контейнер с блоками -->
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 100px; width: 100%; padding: 0 20px; box-sizing: border-box;">
+
+    <!-- БЛОК 1: Форма ввода данных -->
+    <div id="formBlock" style="width: 60%; background: linear-gradient(to bottom right, rgb(255, 255, 105), white); border-top-left-radius: 20px; border-bottom-right-radius: 20px; padding: 3% 5%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: all 0.3s;">
+        <h1 style="font-size: 2.5rem; color: rgb(44, 44, 44); margin-bottom: 30px;">Покупка</h1>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 20px;">
+            <input type="text" id="fullName" style="width: 80%; border-radius: 20px; padding: 12px 20px; font-size: 1.2rem; border: 1px solid #ccc; outline: none; font-family: inherit; box-sizing: border-box;" placeholder="Введите ФИО">
+            <input type="tel" id="phone" style="width: 80%; border-radius: 20px; padding: 12px 20px; font-size: 1.2rem; border: 1px solid #ccc; outline: none; font-family: inherit; box-sizing: border-box;" placeholder="Введите номер телефона">
+            <input type="email" id="email" style="width: 80%; border-radius: 20px; padding: 12px 20px; font-size: 1.2rem; border: 1px solid #ccc; outline: none; font-family: inherit; box-sizing: border-box;" placeholder="Введите email">
+            <button id="submitBtn" style="width: 40%; padding: 12px; background: black; color: white; border-radius: 20px; font-size: 1.2rem; cursor: pointer; border: none; font-family: inherit; transition: all 0.3s;">Оформить заказ</button>
+        </div>
+        <div style="margin-top: 30px; font-size: 0.9rem; color: #333;">При вводе данных вы даете согласие на их обработку</div>
+    </div>
+
+    <!-- БЛОК 2: Поздравление (изначально скрыт) -->
+    <div id="successBlock" style="width: 60%; background: linear-gradient(to bottom right, rgb(255, 255, 105), white); border-top-left-radius: 20px; border-bottom-right-radius: 20px; padding: 3% 5%; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.2); display: none; transition: all 0.3s;">
+        <h1 id="congratsTitle" style="font-size: 2rem; color: rgb(44, 44, 44); margin-bottom: 30px;">Поздравляем с покупкой!</h1>
+        <div style="margin-top: 30px; text-align: left; display: inline-block; width: 80%; font-size: 1.2rem; background: rgba(255,255,255,0.5); padding: 20px; border-radius: 15px; box-sizing: border-box;">
+            <p id="displayName" style="margin: 0 0 10px 0;">📋 <strong>ФИО:</strong> </p>
+            <p id="displayPhone" style="margin: 0 0 10px 0;">📞 <strong>Телефон:</strong> </p>
+            <p id="displayEmail" style="margin: 0;">✉️ <strong>Email:</strong> </p>
+        </div>
+        <div style="margin-top: 30px; padding: 15px; background: rgba(0, 100, 0, 0.15); border-radius: 15px; width: 80%; display: inline-block; font-size: 1.2rem; color: rgb(0, 80, 0); box-sizing: border-box;">
+            <p style="margin: 0;">📞 С вами свяжется оператор в течение 15 минут!</p>
+        </div>
+        <button id="backBtn" style="margin-top: 30px; width: 40%; padding: 12px; background: black; color: white; border-radius: 20px; font-size: 1rem; cursor: pointer; border: none; font-family: inherit; transition: all 0.3s;">← Вернуться</button>
+    </div>
+</div>
+
+<style>
+    /* Анимации (их нельзя сделать инлайн, поэтому они в отдельном теге style) */
+    @keyframes fadeOutUp {
+        from {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        to {
+            opacity: 0;
+            transform: translateY(-80px);
+        }
+    }
+
+    @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(80px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hide-block {
+        animation: fadeOutUp 0.5s ease forwards;
+    }
+
+    .show-block {
+        animation: fadeInDown 0.5s ease forwards;
+    }
+</style>
+
+<script>
+    // Получаем элементы
+    const formBlock = document.getElementById('formBlock');
+    const successBlock = document.getElementById('successBlock');
+    const submitBtn = document.getElementById('submitBtn');
+    const backBtn = document.getElementById('backBtn');
+    const fullNameInput = document.getElementById('fullName');
+    const phoneInput = document.getElementById('phone');
+    const emailInput = document.getElementById('email');
+    const displayName = document.getElementById('displayName');
+    const displayPhone = document.getElementById('displayPhone');
+    const displayEmail = document.getElementById('displayEmail');
+    const congratsTitle = document.getElementById('congratsTitle');
+
+    // Функция валидации
+    function validateForm() {
+        if (!fullNameInput.value.trim()) {
+            alert('Введите ФИО');
+            return false;
+        }
+        if (!phoneInput.value.trim()) {
+            alert('Введите номер телефона');
+            return false;
+        }
+        if (!emailInput.value.trim()) {
+            alert('Введите email');
+            return false;
+        }
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(emailInput.value.trim())) {
+            alert('Введите корректный email');
+            return false;
+        }
+        return true;
+    }
+
+    // Функция для получения имени (первое слово из ФИО)
+    function getFirstName(fullName) {
+        const parts = fullName.trim().split(' ');
+        if (parts.length >= 2){
+            return parts[1];
+        }
+        return parts[0];
+    }
+
+    // Обработчик отправки формы
+    submitBtn.addEventListener('click', function() {
+        if (validateForm()) {
+            const fullName = fullNameInput.value.trim();
+            const firstName = getFirstName(fullName);
+            
+            // Обновляем заголовок с именем
+            congratsTitle.innerHTML = `🎉 Поздравляем с покупкой, ${firstName}! 🎉`;
+            
+            // Заполняем данные
+            displayName.innerHTML = `📋 <strong>ФИО:</strong> ${fullName}`;
+            displayPhone.innerHTML = `📞 <strong>Телефон:</strong> ${phoneInput.value.trim()}`;
+            displayEmail.innerHTML = `✉️ <strong>Email:</strong> ${emailInput.value.trim()}`;
+
+            // Анимация скрытия формы
+            formBlock.classList.add('hide-block');
+            
+            setTimeout(() => {
+                formBlock.style.display = 'none';
+                formBlock.classList.remove('hide-block');
+                
+                successBlock.style.display = 'block';
+                successBlock.classList.add('show-block');
+                
+                setTimeout(() => {
+                    successBlock.classList.remove('show-block');
+                }, 500);
+            }, 500);
+        }
+    });
+
+    // Кнопка "Вернуться"
+    backBtn.addEventListener('click', function() {
+        successBlock.classList.add('hide-block');
+        
+        setTimeout(() => {
+            successBlock.style.display = 'none';
+            successBlock.classList.remove('hide-block');
+            
+            formBlock.style.display = 'block';
+            formBlock.classList.add('show-block');
+            
+            setTimeout(() => {
+                formBlock.classList.remove('show-block');
+            }, 500);
+        }, 500);
+    });
+
+    // Отправка по Enter
+    const inputs = [fullNameInput, phoneInput, emailInput];
+    inputs.forEach(input => {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                submitBtn.click();
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
